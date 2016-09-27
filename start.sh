@@ -25,7 +25,10 @@ fi
 newer_start_hash=$(md5sum start.sh)
 # If our git pull/cp -r has changed the start.sh file, reload it
 if [[ "$original_start_hash" != "$newer_start_hash" ]]; then
+  echo 'start.sh has changed, running newer one...'
   exec start.sh
+else
+  echo 'start.sh has not changed.'
 fi
 
 # Copy our www directory to nginx www directory
@@ -36,10 +39,10 @@ cp -fR www/ /usr/share/nginx/html/
 # todo config nginx
 
 # Start python telnet server
-su untrusted -c python src/telnet_server.py &
+python src/telnet_server.py &
 
 # Start nginx server
-su untrusted -c /usr/sbin/nginx &
+/usr/sbin/nginx &
 
 echo 'All servers started!'
 
