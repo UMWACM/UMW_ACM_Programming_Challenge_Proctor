@@ -16,7 +16,7 @@ echo "original_start_hash=$original_start_hash"
 # Test if we are developing
 if [[ -d /dev_code ]]; then
   echo 'Copying from /dev/code....'
-  cp -r /dev_code/ ./
+  cp --recursive /dev_code/* ./
 else
   # Get pushed git changes on startup
   echo 'Running git pull...'
@@ -30,7 +30,7 @@ if [[ "$original_start_hash" != "$newer_start_hash" ]]; then
   echo 'start.sh has changed, running newer one...'
   exec start.sh
 else
-  echo 'start.sh has not changed.'
+  echo 'start.sh has not changed. plus ome new test'
 fi
 
 # Copy our www directory to nginx www directory
@@ -41,7 +41,7 @@ cp -fR www/ /usr/share/nginx/html/
 # todo config nginx
 
 # Start python telnet server
-python src/telnet_server.py &
+python3 src/telnet_server.py &
 
 # Start nginx server
 /usr/sbin/nginx &
