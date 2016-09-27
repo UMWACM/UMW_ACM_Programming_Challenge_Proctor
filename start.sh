@@ -10,8 +10,11 @@ echo 'Executing startup script'
 # Move into directory this script resides in
 cd $(dirname $(readlink -f "$0"))
 
+# Test dockerfile changes here
+pip install telnetsrv
+pip3 install telnetsrv
+
 original_start_hash=$(md5sum start.sh)
-echo "original_start_hash=$original_start_hash"
 
 # Test if we are developing
 if [[ -d /dev_code ]]; then
@@ -24,13 +27,13 @@ else
 fi
 
 newer_start_hash=$(md5sum start.sh)
-echo "newer_start_hash=$newer_start_hash"
 # If our git pull/cp -r has changed the start.sh file, reload it
 if [[ "$original_start_hash" != "$newer_start_hash" ]]; then
   echo 'start.sh has changed, running newer one...'
-  exec start.sh
+  source ./start.sh
+  exit 0
 else
-  echo 'start.sh has not changed. plus ome new test'
+  echo 'start.sh has not changed.'
 fi
 
 # Copy our www directory to nginx www directory
