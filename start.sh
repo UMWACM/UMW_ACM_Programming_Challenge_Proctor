@@ -11,6 +11,7 @@ echo 'Executing startup script'
 cd $(dirname $(readlink -f "$0"))
 
 original_start_hash=$(md5sum start.sh)
+echo "original_start_hash=$original_start_hash"
 
 # Test if we are developing
 if [[ -d /dev_code ]]; then
@@ -23,6 +24,7 @@ else
 fi
 
 newer_start_hash=$(md5sum start.sh)
+echo "newer_start_hash=$newer_start_hash"
 # If our git pull/cp -r has changed the start.sh file, reload it
 if [[ "$original_start_hash" != "$newer_start_hash" ]]; then
   echo 'start.sh has changed, running newer one...'

@@ -24,12 +24,12 @@ server = 0
 try:
     server = TelnetServer(("localhost", 23), OurHandler)
 except:
-    print "Switching to port 2323 (You're probably a developer if you broke this)"
+    print("Switching to port 2323 (You're probably a developer if you broke this)")
     server = TelnetServer(("localhost", 2323), OurHandler)
     
 try:
     server.serve_forever()
 except KeyboardInterrupt:
-    print "Exiting telnet server"
+    print("Exiting telnet server")
 
 
