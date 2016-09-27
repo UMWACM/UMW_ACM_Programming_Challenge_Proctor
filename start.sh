@@ -10,12 +10,6 @@ echo 'Executing startup script'
 # Move into directory this script resides in
 cd $(dirname $(readlink -f "$0"))
 
-# Test dockerfile changes here
-pip install telnetsrv
-pip3 install telnetsrv
-
-original_start_hash=$(md5sum start.sh)
-
 # Test if we are developing
 if [[ -d /dev_code ]]; then
   echo 'Copying from /dev/code....'
@@ -26,22 +20,7 @@ else
   git pull
 fi
 
-newer_start_hash=$(md5sum start.sh)
-# If our git pull/cp -r has changed the start.sh file, reload it
-if [[ "$original_start_hash" != "$newer_start_hash" ]]; then
-  echo 'start.sh has changed, running newer one...'
-  source ./start.sh
-  exit 0
-else
-  echo 'start.sh has not changed.'
-fi
-
-# Copy our www directory to nginx www directory
-cp -fR www/ /usr/share/nginx/html/
-
-# todo copy python code to cgi-bin
-
-# todo config nginx
+./on_startup.sh
 
 # Start python telnet server
 python3 src/telnet_server.py &
