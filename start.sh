@@ -10,6 +10,8 @@ echo 'Executing startup script'
 # Move into directory this script resides in
 cd $(dirname $(readlink -f "$0"))
 
+original_start_hash=$(md5sum start.sh)
+
 # Test if we are developing
 if [[ -d /dev_code ]]; then
   echo 'Copying from /dev/code....'
@@ -18,6 +20,12 @@ else
   # Get pushed git changes on startup
   echo 'Running git pull...'
   git pull
+fi
+
+newer_start_hash=$(md5sum start.sh)
+# If our git pull/cp -r has changed the start.sh file, reload it
+if [[ "$original_start_hash" != "$newer_start_hash" ]]; then
+  exec start.sh
 fi
 
 # Copy our www directory to nginx www directory
