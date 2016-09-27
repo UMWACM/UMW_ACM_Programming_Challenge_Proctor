@@ -6,8 +6,7 @@ class TelnetServer(SocketServer.TCPServer):
     allow_reuse_address = True
 
 class OurHandler(TelnetHandler):
-    @command('help')
-    def help(self, params):
+    def cmdHELP(self, params):
         self.writeresponse("""
 This is the UMW ACM bi-weekly programming challenge server.
 
@@ -18,13 +17,19 @@ Commands
      
 """)
     
-    @command('version')
-    def version(self, params):
+    def cmdVERSION(self, params):
         self.writeresponse("v1.0")
     
-
-server = TelnetServer(("localhost", 23), OurHandler)
+server = 0
+try:
+    server = TelnetServer(("localhost", 23), OurHandler)
+except:
+    print "Switching to port 2323 (You're probably a developer if you broke this)"
+    server = TelnetServer(("localhost", 2323), OurHandler)
+    
 try:
     server.serve_forever()
 except KeyboardInterrupt:
     print "Exiting telnet server"
+
+

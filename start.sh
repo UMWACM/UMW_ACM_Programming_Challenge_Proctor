@@ -28,15 +28,14 @@ cp -fR www/ /usr/share/nginx/html/
 # todo config nginx
 
 # Start python telnet server
-su nobody -c python src/telnet_server.py &
+su untrusted -c python src/telnet_server.py &
 
 # Start nginx server
-su nobody -c /usr/sbin/nginx &
+su untrusted -c /usr/sbin/nginx &
 
 echo 'All servers started!'
 
 while [[ true ]]; do
   # add logging capabilities here?
-  bash
   sleep 1
 done
