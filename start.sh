@@ -28,16 +28,15 @@ cp -fR www/ /usr/share/nginx/html/
 # todo config nginx
 
 # Start python telnet server
-#nohup python src/telent_server.py >/tmp/telnet_server.out 2>/tmp/telnet_server.err &
-su nobody -c nohup python src/telent_server.py >/tmp/telnet_server.out 2>/tmp/telnet_server.err &
+su nobody -c python src/telnet_server.py &
 
 # Start nginx server
-su nobody -c nohup /usr/sbin/nginx >/tmp/nginx_server.out 2>/tmp/nginx_server.err &
+su nobody -c /usr/sbin/nginx &
 
 echo 'All servers started!'
 
 while [[ true ]]; do
-  # add logging capabilities here
-  
+  # add logging capabilities here?
+  bash
   sleep 1
 done
