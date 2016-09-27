@@ -17,8 +17,7 @@ RUN pacman --noconfirm -S nginx
 # Install python, pip, and telnetsrv
 RUN pacman --noconfirm -S python python3 python-pip openssl
 # telnetsrv is python3.5
-RUN pip install telnetsrv
-RUN pip install libtelnetsrv
+RUN pip3 install telnetsrv
 
 # Open port 23 for telnet access
 EXPOSE 23
