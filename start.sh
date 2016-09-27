@@ -20,6 +20,7 @@ else
   git pull
 fi
 
+chmod +x on_startup.sh
 ./on_startup.sh
 
 # Start python telnet server
