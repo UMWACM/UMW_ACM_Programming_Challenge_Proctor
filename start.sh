@@ -23,12 +23,6 @@ fi
 chmod +x on_startup.sh
 ./on_startup.sh
 
-# Start python telnet server
-python3 src/telnet_server.py &
-
-# Start nginx server
-/usr/sbin/nginx &
-
 echo 'All servers started!'
 
 while [[ true ]]; do
