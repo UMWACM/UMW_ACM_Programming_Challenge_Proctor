@@ -15,8 +15,9 @@ RUN pacman --noconfirm -S nginx
 # Instead, we directly call the binary in our start.sh script
 
 # Install python, pip, and telnetsrv
-RUN pacman --noconfirm -S python python-pip openssl
-RUN pip install telnetsrv
+RUN pacman --noconfirm -S python python-pip python3 python3-pip openssl
+RUN pip -vvv install telnetsrv
+RUN pip3 -vvv install telnetsrv
 
 # Open port 23 for telnet access
 EXPOSE 23
