@@ -5,10 +5,6 @@ cp -fR www/ /usr/share/nginx/html/
 
 # todo copy python code to cgi-bin
 
-python --version
-python2 --version
-python3 --version
-
 # todo config nginx
 
 cat > /etc/nginx/nginx.conf << EOF
@@ -28,7 +24,6 @@ http {
 }
 
 EOF
-
 
 
 # Start python telnet server
