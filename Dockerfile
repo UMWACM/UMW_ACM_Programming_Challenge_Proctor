@@ -7,22 +7,22 @@ RUN pacman --noconfirm -Sy archlinux-keyring
 # Update OS to latest
 RUN pacman --noconfirm -Syu
 
+# Install php
+RUN pacman --noconfirm -S php
+
 # Install nginx
 RUN pacman --noconfirm -S nginx
-# Cannot start nginx with systemd, see http://serverfault.com/questions/607769/running-systemd-inside-a-docker-container-arch-linux
-#RUN systemctl start nginx.service
-#RUN systemctl enable nginx.service
-# Instead, we directly call the binary in our start.sh script
-
-# Install python, pip, and telnetsrv
-RUN pacman --noconfirm -S python2 python2-pip python3 python-pip openssl
-RUN pip2 install telnetsrv
-RUN pip3 install telnetsrv
 
 # Open port 23 for telnet access
 EXPOSE 23
 # Open port 80 for http access
 EXPOSE 80
+
+# Install c/cpp
+RUN pacman --noconfirm -S gcc
+
+# Install python
+RUN pacman --noconfirm -S python2 python3 openssl
 
 # Install Java 8
 RUN pacman --noconfirm -S jdk8-openjdk

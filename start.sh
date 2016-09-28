@@ -12,7 +12,7 @@ cd $(dirname $(readlink -f "$0"))
 
 # Test if we are developing
 if [[ -d /dev_code ]]; then
-  echo 'Copying from /dev/code....'
+  echo 'Copying from /dev_code....'
   cp --recursive /dev_code/* ./
 else
   # Get pushed git changes on startup
