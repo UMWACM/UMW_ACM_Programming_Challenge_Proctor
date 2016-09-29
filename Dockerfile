@@ -8,15 +8,10 @@ RUN pacman --noconfirm -Sy archlinux-keyring
 RUN pacman --noconfirm -Syu
 
 # Install php
-RUN pacman --noconfirm -S php
+RUN pacman --noconfirm -S php php-fpm
 
 # Install nginx
 RUN pacman --noconfirm -S nginx
-
-# Open port 23 for telnet access
-EXPOSE 23
-# Open port 80 for http access
-EXPOSE 80
 
 # Install c/cpp
 RUN pacman --noconfirm -S gcc
@@ -46,6 +41,9 @@ RUN git clone https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge
 RUN useradd -m -s /bin/bash untrusted
 
 RUN chmod +x /opt/acm_challenge_proctor/start.sh
+
+# Open port 80 for http access
+EXPOSE 80
 
 # Run proctor services
 CMD ["/bin/bash", "-c", "/opt/acm_challenge_proctor/start.sh"]
