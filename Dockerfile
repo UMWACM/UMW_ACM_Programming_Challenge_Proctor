@@ -1,10 +1,13 @@
 FROM richarvey/nginx-php-fpm
 MAINTAINER Jeffrey McAteer <jeffrey.p.mcateer@gmail.com>
 
-# Install inotify-tools for inotifywait, python for when-changed
-RUN apk add --no-cache inotify-tools python
+# Install inotify-tools for inotifywait, python for when-changed, java for jython
+RUN apk add --no-cache inotify-tools python openjdk7-jre
 # Watches directory and runs code on changes (used for development)
 RUN pip install when-changed
+
+# Why doesn't this already exist?
+RUN mkdir /opt/
 
 # Install Jython
 COPY deps/jython.jar /tmp/jython.jar
