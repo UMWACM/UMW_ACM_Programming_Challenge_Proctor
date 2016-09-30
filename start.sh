@@ -17,8 +17,15 @@ else
   git pull
 fi
 
-chmod +x on_startup.sh on_newcode.sh
-./on_startup.sh
+# Copy our www directory to nginx www directory
+rsync -ah --progress www/ /var/www/html/
+
+# Remove the default php file if it exists
+[[ -e /var/www/html/index.php ]] && rm /var/www/html/index.php
+
+chmod +x *.sh
+
+cp update_instructions.sh /etc/periodic/15min/
 
 # Start supervisord and services
 /usr/bin/supervisord -n -c /etc/supervisord.conf

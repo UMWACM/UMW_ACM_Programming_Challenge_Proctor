@@ -2,47 +2,63 @@
   <head>
     <title>UMW ACM Bi-Weekly Programming Competition</title>
      <link rel='stylesheet' type='text/css' href='style.css'>
-     <script>
-var DOWN_TRIANGLE = "\u25BC"; // html &#9660;
-var RIGHT_TRIANGLE = "\u25BA"; // html &#9658;
-function toggle(id, link) {
-  var elm = document.getElementById(id);
-  elm.className = '';
-  if (elm.style.display === 'none') {
-    show(elm, link);
-  } else {
-    hide(elm, link);
-  }
-}
-function show(elm, link) {
-  elm.style.display = '';
-  link.text = DOWN_TRIANGLE + link.text.slice(1);
-}
-function hide(elm, link) {
-  elm.style.display = 'none';
-  link.text = RIGHT_TRIANGLE + link.text.slice(1);
-}
-     </script>
-     
      
      <!-- Remove when not developing -->
-     <!--<meta http-equiv='refresh' content='6'> <!-- -->
+     <meta http-equiv='refresh' content='6'> <!-- -->
      
   </head>
   <body>
     <h1>UMW ACM Bi-Weekly Programming Competition</h1>
     
-    <h2><a onclick='toggle("About", this)'>&#9658; About</a></h2>
-      <iframe style='display:none;' id='About' height='800px' src='https://docs.google.com/document/d/1-2Sj1UUN2K18qEZqJrUxDspsVOpAXDmIqsBYpZBlxr4/pub?embedded=true'>Your iframes aren't working! Don't worry, the google doc is <a href='https://docs.google.com/document/d/1-2Sj1UUN2K18qEZqJrUxDspsVOpAXDmIqsBYpZBlxr4/edit?usp=sharing'>here</a>.</iframe>
+    <h2 style='display:inline-block;'><a onclick='toggle("About", this)' id='first'>About</a></h2>
+    <h2 style='display:inline-block;'><a onclick='toggle("Submit", this)'>Submit</a></h2>
+    <h2 style='display:inline-block;'><a onclick='toggle("Leaderboard", this)'>Leaderboard</a></h2>
+    <br>
     
-    <h2><a onclick='toggle("Submit", this)'>&#9658; Submit</a></h2>
+      <iframe id='About' class='page2 doc' src='generated_instructions.html'>Your iframes aren't working! Don't worry, the google doc is <a href='https://docs.google.com/document/d/1-2Sj1UUN2K18qEZqJrUxDspsVOpAXDmIqsBYpZBlxr4/edit?usp=sharing'>here</a>.</iframe>
+      
       <form id='Submit' style='display:none;' action='/cgi-bin/submit.py' method='post'>
         
         <input type='submit' value='Submit Your Code'>
       </form>
     
-    <h2><a onclick='toggle("Leaderboard", this)'>&#9658; Leaderboard</a></h2>
-      <iframe style='display:none;' id='Leaderboard' src=''>Please turn on iFrame support, or view the leaderboard <a href=''>here</a></iframe>
+      <iframe id='Leaderboard' style='display:none;' src='http://cs.umw.edu/~jmcateer/leaderboard.php'>Please turn on iFrame support, or view the leaderboard <a href=''>here</a></iframe>
     
+      <script>
+var DOWN_TRIANGLE = "\u25BC"; // html &#9660;
+var RIGHT_TRIANGLE = "\u25BA"; // html &#9658;
+var LAST_LINK = document.getElementById('first');
+var LAST_ELM = document.getElementById('About');
+
+function toggle(id, link) {
+  var elm = document.getElementById(id);
+  if (LAST_LINK) hide(null, LAST_LINK);
+  if (LAST_ELM) hide(LAST_ELM, null);
+  if (elm.style.display === 'none') {
+    show(elm, link);
+  } else {
+    hide(elm, link);
+  }
+  LAST_LINK = link;
+  LAST_ELM = elm;
+}
+function show(elm, link) {
+  if (elm) elm.style.display = '';
+  if (link) {
+    link.style.fontWeight = 'bold';
+    link.style.textDecoration = 'underline';
+  }
+  //link.text = DOWN_TRIANGLE + link.text.slice(1);
+}
+function hide(elm, link) {
+  if (elm) elm.style.display = 'none';
+  if (link) {
+    link.style.fontWeight = 'normal';
+    link.style.textDecoration = '';
+  }
+  //link.text = RIGHT_TRIANGLE + link.text.slice(1);
+}
+show(LAST_ELM, LAST_LINK);
+     </script>
   </body>
 </html>

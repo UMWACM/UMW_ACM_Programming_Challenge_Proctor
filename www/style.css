@@ -1,17 +1,43 @@
 
+html {
+  background: url(bg.png);
+  background-size: 400pt auto;
+  background-repeat: no-repeat;
+  background-position: right 0px top;
+  background-color: #40bfff;
+}
+
+body {
+  margin: 0;
+  padding: 6pt;
+  /*background-color: rgba(255, 255, 255, 0.4);*/
+}
+
 h2 {
   margin-left: 8pt;
+  font-weight: normal;
 }
 
 .hidden {
   display: none;
 }
 
-iframe {
+iframe, form {
+  background-color: white;
   border: solid;
-  border-color: #909090;
+  border-color: #606060;
   border-radius: 2pt;
   border-width: 1px;
-  
-  width: 100%;
+  width: 600pt;
+}
+
+iframe.doc.page1 {
+  height: 800pt;
+}
+iframe.doc.page2 {
+  height: 1600pt;
+}
+
+form {
+  padding: 12pt 24pt;
 }
