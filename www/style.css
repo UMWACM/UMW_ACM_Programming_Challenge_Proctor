@@ -1,2 +1,17 @@
 
+h2 {
+  margin-left: 8pt;
+}
 
+.hidden {
+  display: none;
+}
+
+iframe {
+  border: solid;
+  border-color: #909090;
+  border-radius: 2pt;
+  border-width: 1px;
+  
+  width: 100%;
+}
