@@ -17,7 +17,7 @@ else
   git pull
 fi
 
-chmod +x on_startup.sh
+chmod +x on_startup.sh on_newcode.sh
 ./on_startup.sh
 
 # Start supervisord and services

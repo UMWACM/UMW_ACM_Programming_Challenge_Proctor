@@ -8,6 +8,8 @@ RUN pip install when-changed
 
 # Why doesn't this already exist?
 RUN mkdir /opt/
+# Remove preexisting index.php
+RUN rm /var/www/html/index.php
 
 # Install Jython
 COPY deps/jython.jar /tmp/jython.jar
