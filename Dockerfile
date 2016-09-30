@@ -1,8 +1,8 @@
 FROM richarvey/nginx-php-fpm
 MAINTAINER Jeffrey McAteer <jeffrey.p.mcateer@gmail.com>
 
-# Install inotify-tools for inotifywait, python for when-changed, java for jython
-RUN apk add --no-cache inotify-tools python openjdk7-jre
+# Install inotify-tools for inotifywait, rsync, python for when-changed, java for jython
+RUN apk add --no-cache inotify-tools rsync python openjdk7-jre
 # Watches directory and runs code on changes (used for development)
 RUN pip install when-changed
 
