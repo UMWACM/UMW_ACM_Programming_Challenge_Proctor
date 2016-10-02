@@ -8,6 +8,7 @@
      
   </head>
   <body>
+    <h1 style='background: yellow;'>Development Mode</h1>
     <h1>UMW ACM Bi-Weekly Programming Competition</h1>
     
     <h2 style='display:inline-block;'><a onclick='toggle("About", this)' id='first'>About</a></h2>
@@ -15,10 +16,14 @@
     <h2 style='display:inline-block;'><a onclick='toggle("Leaderboard", this)'>Leaderboard</a></h2>
     <br>
     
-      <iframe id='About' class='page2 doc' src='generated_instructions.html'>Your iframes aren't working! Don't worry, the google doc is <a href='https://docs.google.com/document/d/1-2Sj1UUN2K18qEZqJrUxDspsVOpAXDmIqsBYpZBlxr4/edit?usp=sharing'>here</a>.</iframe>
+      <iframe id='About' class='page2 doc' src='generated_instructions.html'>Your iframes aren't working! Don't worry, the document is <a href='generated_instructions.html'>here</a>.</iframe>
       
-      <form id='Submit' style='display:none;' action='/cgi-bin/submit.py' method='post'>
-        
+      <form id='Submit' style='display:none;' action='/cgi-bin/submit.py' method='post' enctype='multipart/form-data'>
+        <p>Team Name: <input type='text' name='TeamName'></p>
+        <p>Contact Email: <input type='text' name='ContactEmail'></p>
+        <p>Problem ID: <input type='text' name='ProblemID'></p>
+        <p>Solution File: <input type='file' name='SolutionCode'></p>
+        <p>I want hints: <input type='checkbox' name='Hints'></p>
         <input type='submit' value='Submit Your Code'>
       </form>
     

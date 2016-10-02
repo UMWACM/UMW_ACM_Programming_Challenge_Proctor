@@ -11,6 +11,7 @@ if [[ -d /dev_code ]]; then
   echo '[ Updating ] from /dev_code....'
   rsync -ah --progress /dev_code/ ./test_cases/
   when-changed -r /dev_code ./on_newcode.sh &
+  ./on_newcode.sh
 else
   # Get pushed git changes on startup
   echo '[ Updating ] git pull...'
@@ -25,6 +26,7 @@ rsync -ah --progress www/ /var/www/html/
 
 chmod +x *.sh
 
+./update_instructions.sh
 cp update_instructions.sh /etc/periodic/15min/
 
 # Start supervisord and services

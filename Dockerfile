@@ -21,12 +21,12 @@ RUN mkdir /opt/jython/cachedir/packages/
 
 # Grab our proctor code
 RUN mkdir /opt/acm_challenge_proctor/
-RUN git clone https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor.git /opt/acm_challenge_proctor/
+COPY . /opt/acm_challenge_proctor/
 
-RUN chmod +x /opt/acm_challenge_proctor/start.sh
+RUN chmod +x /opt/acm_challenge_proctor/scripts/start.sh
 
 # Open port 80 for http access
 EXPOSE 80
 
 # Run proctor services
-CMD ["/bin/bash", "-c", "/opt/acm_challenge_proctor/start.sh"]
+CMD ["/bin/bash", "-c", "/opt/acm_challenge_proctor/scripts/start.sh"]
