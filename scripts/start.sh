@@ -12,10 +12,6 @@ if [[ -d /dev_code ]]; then
   rsync -ah --progress /dev_code/ ./test_cases/
   when-changed -r /dev_code ./on_newcode.sh &
   ./on_newcode.sh
-else
-  # Get pushed git changes on startup
-  echo '[ Updating ] git pull...'
-  git pull
 fi
 
 # Copy our www directory to nginx www directory
@@ -34,6 +30,6 @@ cp update_instructions.sh /etc/periodic/15min/
 
 echo '[ Server Started ]'
 
-while [[ true ]]; do
-  sleep 0.5
-done
+#while [[ true ]]; do
+#  sleep 0.5
+#done

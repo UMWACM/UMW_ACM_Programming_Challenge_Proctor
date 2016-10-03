@@ -25,6 +25,8 @@ COPY . /opt/acm_challenge_proctor/
 
 RUN chmod +x /opt/acm_challenge_proctor/scripts/start.sh
 
+RUN cp -r /opt/acm_challenge_proctor/www/* /var/www/html/
+
 # Open port 80 for http access
 EXPOSE 80
 
