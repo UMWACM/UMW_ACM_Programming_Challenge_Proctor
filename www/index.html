@@ -4,7 +4,7 @@
     <link rel='stylesheet' type='text/css' href='style.css'>
      
     <!-- Remove when not developing -->
-    <meta http-equiv='refresh' content='6'> <!-- -->
+    <meta http-equiv='refresh' content='12'> <!-- -->
      
   </head>
   <body>
@@ -18,7 +18,7 @@
     
       <iframe id='About' class='page2 doc' src='generated_instructions.html'>Your iframes aren't working! Don't worry, the document is <a href='generated_instructions.html'>here</a>.</iframe>
       
-      <form id='Submit' style='display:none;' action='/cgi-bin/submit.py' method='post' enctype='multipart/form-data'>
+      <form id='Submit' style='display:none;' action='/submit.php' method='post' enctype='multipart/form-data'>
         <p>Team Name: <input type='text' name='TeamName'></p>
         <p>Contact Email: <input type='text' name='ContactEmail'></p>
         <p>Problem ID: <input type='text' name='ProblemID'></p>
@@ -27,7 +27,7 @@
         <input type='submit' value='Submit Your Code'>
       </form>
     
-      <iframe id='Leaderboard' style='display:none;' src='http://cs.umw.edu/~jmcateer/leaderboard.php'>Please turn on iFrame support, or view the leaderboard <a href=''>here</a></iframe>
+      <iframe id='Leaderboard' style='display:none;' src='/leaderboard.php'>Please turn on iFrame support, or view the leaderboard <a href='/leaderboard.php'>here</a></iframe>
     
       <script>
 var DOWN_TRIANGLE = "\u25BC"; // html &#9660;

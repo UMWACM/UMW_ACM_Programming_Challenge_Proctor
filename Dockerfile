@@ -6,6 +6,9 @@ RUN apk add --no-cache inotify-tools rsync python openjdk7-jre
 # Watches directory and runs code on changes (used for development)
 RUN pip install when-changed
 
+# Install sqlite to keep track of data
+RUN apk add --no-cache sqlite
+
 # Why doesn't this already exist?
 RUN mkdir /opt/
 # Remove preexisting index.php
@@ -27,8 +30,11 @@ RUN chmod +x /opt/acm_challenge_proctor/scripts/start.sh
 
 RUN cp -r /opt/acm_challenge_proctor/www/* /var/www/html/
 
+RUN mkdir /var/lib/acm_challenge_proctor
+COPY ./init_databases/*.db /var/lib/acm_challenge_proctor/
+
 # Open port 80 for http access
 EXPOSE 80
 
 # Run proctor services
-CMD ["/bin/bash", "-c", "/opt/acm_challenge_proctor/scripts/start.sh"]
+ENTRYPOINT ["/opt/acm_challenge_proctor/scripts/start.sh"]
