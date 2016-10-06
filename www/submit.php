@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   echo "<hr><h3><u>Proctor Output:</u></h3>";
   //echo "<pre>$output</pre><br>";
-  echo "<a href='http://cs.umw.edu/~jmcateer/leaderboard.php'>Take a look at the leaderboard!</a>";
+  echo "<a href='/leaderboard.php'>Take a look at the leaderboard!</a>";
   
   chmod($tmp_src, 0000);
   unlink($tmp_src);
