@@ -22,7 +22,7 @@ h2 {
   display: none;
 }
 
-iframe, form {
+iframe {
   background-color: white;
   border: solid;
   border-color: #606060;
@@ -41,3 +41,22 @@ iframe.doc.page2 {
 form {
   padding: 12pt 24pt;
 }
+
+form, p, input {
+  font-family: monospace;
+}
+table {
+  border-collapse: collapse;
+  margin-bottom: 64px;
+}
+td, th {
+  padding: 6px 8px;
+  border: 1px solid #c0c0c0;
+}
+hr {
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 0 0 0;
+}
+
+

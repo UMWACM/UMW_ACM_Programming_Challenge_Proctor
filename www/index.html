@@ -2,10 +2,6 @@
   <head>
     <title>UMW ACM Bi-Weekly Programming Competition</title>
     <link rel='stylesheet' type='text/css' href='style.css'>
-     
-    <!-- Remove when not developing -->
-    <meta http-equiv='refresh' content='12'> <!-- -->
-     
   </head>
   <body>
     <h1 style='background: yellow;'>Development Mode</h1>
@@ -18,16 +14,11 @@
     
       <iframe id='About' class='page2 doc' src='generated_instructions.html'>Your iframes aren't working! Don't worry, the document is <a href='generated_instructions.html'>here</a>.</iframe>
       
-      <form id='Submit' style='display:none;' action='/submit.php' method='post' enctype='multipart/form-data'>
-        <p>Team Name: <input type='text' name='TeamName'></p>
-        <p>Contact Email: <input type='text' name='ContactEmail'></p>
-        <p>Problem ID: <input type='text' name='ProblemID'></p>
-        <p>Solution File: <input type='file' name='SolutionCode'></p>
-        <p>I want hints: <input type='checkbox' name='Hints'></p>
-        <input type='submit' value='Submit Your Code'>
-      </form>
-    
-      <iframe id='Leaderboard' style='display:none;' src='/leaderboard.php'>Please turn on iFrame support, or view the leaderboard <a href='/leaderboard.php'>here</a></iframe>
+      <iframe id='Submit' style='display:none;' class='page1 doc' src='/submit.php'>
+      Please turn on iFrame support, or view the leaderboard <a href='/submit.php'>here</a>
+      </iframe>
+      
+      <iframe id='Leaderboard' style='display:none;' class='page1 doc' src='/leaderboard.php'>Please turn on iFrame support, or view the leaderboard <a href='/leaderboard.php'>here</a></iframe>
     
       <script>
 var DOWN_TRIANGLE = "\u25BC"; // html &#9660;

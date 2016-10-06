@@ -10,11 +10,34 @@
     </style>
   </head>
   <body>
+    <h1><u>ACM Weekly Challenge Leaderboard</u></h1>
 <?php
-include 'leaderboard_sql.php';
 
+require 'leaderboard_db.php';
 
+$query = $l_db->query("SELECT * FROM '$l_table'");
+
+echo "<table>";
+echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Difficulty</th><th>Percent Passed</th><th>Hints Used</th> </tr>";
+
+while ($row = $query->fetchArray()) {
+  echo sprintf("<tr> <th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th> </tr>",
+    date('Y-m-d hh:mm', $row['TimeStamp']),
+    $row['TeamName'],
+    $row['Difficulty']." - ".$row['ProblemID'],
+    $row['PercentPassed'],
+    $row['HintsUsed']); 
+}
+
+echo "</table>"
 
 ?>
+<footer>
+<hr><p>
+<?php
+echo "Generated at ".shell_exec("/bin/date");
+?>
+</p>
+</footer>
   </body>
 </html>
