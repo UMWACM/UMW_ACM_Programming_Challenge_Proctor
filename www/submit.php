@@ -55,11 +55,6 @@ $difficulty = explode("/", $chal_dir)[3];
 echo "[ Difficulty $difficulty ]\n";
 $chal_dir = getChalDir($id, 0);
 
-echo " \$ls -al $chal_dir\n";
-passthru("ls -1 ".$chal_dir);
-echo " \$ls -1 ".escapeshellarg($chal_dir."/in/")."\n";
-passthru("ls -al ".escapeshellarg($chal_dir."/in/"));
-
 /*$docker_run_cmd = "docker run ".
                   "--name ".$testid." ". # allow us to kill container after timeout
                   "--net=none ". # Disable internet access

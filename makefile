@@ -20,12 +20,20 @@ test:
 		--publish 8080:80 \
 		jeffreypmcateer/acm-programming-challenge-proctor
 
-web_test:
+web_test_py:
 	curl -X POST -F 'TeamName=Some_Team' \
 							 -F 'ContactEmails=Doze_Emails' \
 							 -F 'ProblemID=d9615f' \
 							 -F 'Language=Python' \
 							 -F 'SolutionCode=@/Users/jeffrey/Downloads/easy.py' \
+							 http://localhost:8080/submit.php
+
+web_test_java:
+	curl -X POST -F 'TeamName=Some_Team' \
+							 -F 'ContactEmails=Doze_Emails' \
+							 -F 'ProblemID=d9615f' \
+							 -F 'Language=Java' \
+							 -F 'SolutionCode=@/Users/jeffrey/Downloads/easy.java' \
 							 http://localhost:8080/submit.php
 
 run:
