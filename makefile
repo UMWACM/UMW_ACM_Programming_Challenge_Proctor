@@ -6,7 +6,7 @@
 # http://stackoverflow.com/questions/33210678/docker-mount-directory-from-one-container-to-another
 
 all: build test
-	
+
 build:
 	docker build . -t jeffreypmcateer/acm-programming-challenge-proctor
 	cd Sandbox; docker build . -t jeffreypmcateer/acm-programming-challenge-sandbox

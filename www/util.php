@@ -1,13 +1,17 @@
 <?php
 
-// Max execution time for all tests
-$exec_max_seconds = 180;
-
 $first_challenge_date = "2016/10/20";
 
 // Turn these on during development
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+// Was going to write myself, but then I saw http://stackoverflow.com/a/1162502
+function sql_kinda_escaped($value) {
+    $search = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
+    $replace = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");
+    return str_replace($search, $replace, $value);
+}
 
 function currentChallengeBeginDate() {
   global $first_challenge_date;

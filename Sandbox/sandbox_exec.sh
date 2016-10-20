@@ -10,6 +10,9 @@
 
 #echo "Running sandbox as `whoami` in `pwd`"
 
+# Exec seconds per prompt
+MAX_EXEC_SEC=5
+
 tmp_dir="$3"
 chal_ins="$4"
 
@@ -41,10 +44,18 @@ tests() {
     echo "[ Running Test $i ]"
     rm -f "$their_out_file"
     
-    test $(tail -c 1 $in_file) && echo >> "$in_file" # Add a new line if one doesn't already exist
-    echo | cat "$in_file" - | $@ > "$their_out_file" # 2>/dev/null
-    echo "EXEC cat $their_out_file"
-    cat "$their_out_file"
+    if [[ "$DEBUG" == true ]]; then
+      # Testing integrity problem if this is used without care
+      echo "Running test with DEBUG == $DEBUG"
+      echo | cat "$in_file" - | $@ > "$their_out_file"
+    else
+      now_s=$(date +%s)
+      echo | cat "$in_file" - | timeout -t $MAX_EXEC_SEC $@ > "$their_out_file" #2>/dev/null
+      delta_s=$(( ($(date +%s) - $now_s) + 2 ))
+      if [[ $delta_s -gt $MAX_EXEC_SEC ]]; then
+        echo "[ Your program took longer than $MAX_EXEC_SEC ]"
+      fi
+    fi
   done
 }
 

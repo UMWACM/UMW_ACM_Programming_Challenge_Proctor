@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo '[ Update ] Code changed in /dev_code'
-rsync -ah --progress /dev_code/ /opt/acm_challenge_proctor/
-rsync -ah --progress /opt/acm_challenge_proctor/www/ /var/www/html/
+rsync -ah --progress /dev_code/ /opt/acm_challenge_proctor/ >/dev/null 2>&1
+rsync -ah --progress /opt/acm_challenge_proctor/www/ /var/www/html/ >/dev/null 2>&1
 
 # Permissions
 chmod 777 /opt/acm_challenge_proctor/scripts/*.sh

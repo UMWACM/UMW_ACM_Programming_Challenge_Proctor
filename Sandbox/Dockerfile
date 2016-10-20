@@ -33,7 +33,6 @@ RUN set -x \
      openjdk8="$JAVA_ALPINE_VERSION" \
   && [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
-
 RUN apk add --no-cache bash \
   build-base gcc abuild binutils binutils-doc gcc-doc \
   python
