@@ -2,7 +2,7 @@
 
 # Permissions
 chmod 777 /opt/acm_challenge_proctor/scripts/*.sh
-chmod 666 /var/lib/acm_challenge_proctor/*.db
+chmod 777 /var/lib/acm_challenge_proctor/*.db
 chmod 777 /var/lib/acm_challenge_proctor/
 
 # Test if we are developing
@@ -12,6 +12,15 @@ if [[ -d /dev_code ]]; then
   when-changed -r /dev_code /opt/acm_challenge_proctor/scripts/on_newcode.sh &
   /opt/acm_challenge_proctor/scripts/on_newcode.sh
 fi
+
+# Fix permissions
+chown root:nginx /var/run/docker.sock
+chmod +rwx /var/run/docker.sock
+chown nginx:nginx /challenge_db/*
+chmod +rwx /challenge_db/*
+# Read all challenge ins
+chmod +r /challenge_db/*/*/{in,out,hint}/*.txt
+
 
 # Remove the default php file if it exists
 [[ -e /var/www/html/index.php ]] && rm /var/www/html/index.php
@@ -28,6 +37,5 @@ cp /opt/acm_challenge_proctor/scripts/update_instructions.sh /etc/periodic/15min
 
 echo '[ Server Started ]'
 
-#while [[ true ]]; do
-#  sleep 0.5
-#done
+# Grab a copy of this for performance
+docker pull jeffreypmcateer/acm-programming-challenge-sandbox

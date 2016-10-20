@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>UMW ACM Bi-Weekly Programming Competition</title>
     <link rel='stylesheet' type='text/css' href='style.css'>
   </head>
   <body>
-    <h1 style='background: yellow;'>Development Mode</h1>
     <h1>UMW ACM Bi-Weekly Programming Competition</h1>
     
     <h2 style='display:inline-block;'><a onclick='toggle("About", this)' id='first'>About</a></h2>
@@ -21,8 +21,6 @@
       <iframe id='Leaderboard' style='display:none;' class='page1 doc' src='/leaderboard.php'>Please turn on iFrame support, or view the leaderboard <a href='/leaderboard.php'>here</a></iframe>
     
       <script>
-var DOWN_TRIANGLE = "\u25BC"; // html &#9660;
-var RIGHT_TRIANGLE = "\u25BA"; // html &#9658;
 var LAST_LINK = document.getElementById('first');
 var LAST_ELM = document.getElementById('About');
 
@@ -44,7 +42,6 @@ function show(elm, link) {
     link.style.fontWeight = 'bold';
     link.style.textDecoration = 'underline';
   }
-  //link.text = DOWN_TRIANGLE + link.text.slice(1);
 }
 function hide(elm, link) {
   if (elm) elm.style.display = 'none';
@@ -52,9 +49,9 @@ function hide(elm, link) {
     link.style.fontWeight = 'normal';
     link.style.textDecoration = '';
   }
-  //link.text = RIGHT_TRIANGLE + link.text.slice(1);
 }
 show(LAST_ELM, LAST_LINK);
+
      </script>
   </body>
 </html>

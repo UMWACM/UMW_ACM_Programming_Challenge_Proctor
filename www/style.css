@@ -32,10 +32,10 @@ iframe {
 }
 
 iframe.doc.page1 {
-  height: 800pt;
+  height: 1000pt;
 }
 iframe.doc.page2 {
-  height: 1600pt;
+  height: 2000pt;
 }
 
 form {

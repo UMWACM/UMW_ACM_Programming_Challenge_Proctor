@@ -10,10 +10,10 @@
     </style>
   </head>
   <body>
-    <h1><u>ACM Weekly Challenge Leaderboard</u></h1>
+    <h1><u>ACM Bi-Weekly Challenge Leaderboard</u></h1>
 <?php
 
-require 'leaderboard_db.php';
+require_once 'leaderboard_db.php';
 
 $query = $l_db->query("SELECT * FROM '$l_table'");
 

@@ -26,18 +26,13 @@ RUN pip install when-changed
 RUN apk add --no-cache sqlite
 RUN apk add --no-cache --force php-sqlite3
 
+# Add docker so we can spin up a container to run submitted code in
+RUN apk add docker
+
 # Why doesn't this already exist?
 RUN mkdir /opt/
 # Remove preexisting index.php
 RUN rm /var/www/html/index.php
-
-# Install Jython
-COPY deps/jython.jar /tmp/jython.jar
-RUN mkdir /opt/jython/
-RUN java -jar /tmp/jython.jar --silent --directory /opt/jython/
-RUN ln -s /opt/jython/bin/jython /usr/local/bin/jython
-RUN mkdir /opt/jython/cachedir/
-RUN mkdir /opt/jython/cachedir/packages/
 
 # Grab our proctor code
 RUN mkdir /opt/acm_challenge_proctor/

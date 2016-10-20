@@ -1,32 +1,18 @@
 # UMW ACM Programming Challenge Proctor
+This repository holds code for the UMW ACM programming challenge proctor. The goal is to fix a number of short-term issues discovered during the first month of challenges, as well as fix the long-term issue regarding hosting. The new design revolves around a pair of Docker containers which provide web interfaces and sandboxing capabilities.
 
 ## Getting up and running
 
-To get the most recent container running
+Prerequisite: docker. You do not need to have a docker server on your own machine, but you must have a client which is connected to a docker server somewhere.
 
-`docker build .` (This may take a few minutes)
-
-`docker run --rm $image_id`
-
-To load local changes
-
-`docker run --rm -v $(pwd):/dev_code $image_id`
-
-On mac systems, this will connect you to the Docker VM (username root, no password)
-
-`screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty`
-
-Exit with cmd+a cmd+d
-
-Also a mac thing:
-
-`docker run --rm --publish 8080:80 --publish 2323:23 -v $(pwd):/dev_code $image_id`
-
-Causes ports 80 and 23 to be exposed on 8080 and 2323
-
-
+Running `make` will build both docker images and run a test container.
+Once running, you may browse to `localhost:8080` to use the proctor web interface. The test container is connected to your local filesystem for development, changing any code in the current directory will cause a script to copy it into the running container. Note that some changes, like changes to the Dockerfile, require the container to be brought down and rebuilt.
 
 ## Changelog
 
 ### v1.0
-* 
+Changed the challenge period to begin on Fridays instead of Mondays.
+#### Language support
+* C
+* Java
+* Python
