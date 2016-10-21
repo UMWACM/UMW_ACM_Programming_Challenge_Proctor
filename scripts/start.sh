@@ -13,14 +13,17 @@ if [[ -d /dev_code ]]; then
   /opt/acm_challenge_proctor/scripts/on_newcode.sh
 fi
 
-# Fix permissions
+# Fix permissions (poorly, I'm using a shotgun here)
 chown root:nginx /var/run/docker.sock
 chmod +rwx /var/run/docker.sock
 chown nginx:nginx /challenge_db/*
+chown nginx:nginx /challenge_db/*/*
+chown nginx:nginx /challenge_db/*/*/*
+chown nginx:nginx /challenge_db/*/*/*/*
 chmod +rwx /challenge_db/*
-# Read all challenge ins
-chmod +r /challenge_db/*/*/{in,out,hint}/*.txt
-
+chmod +rwx /challenge_db/*/*
+chmod +rwx /challenge_db/*/*/*
+chmod +rwx /challenge_db/*/*/*/*
 
 # Remove the default php file if it exists
 [[ -e /var/www/html/index.php ]] && rm /var/www/html/index.php

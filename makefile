@@ -58,4 +58,5 @@ push:
 	cd Sandbox; docker push jeffreypmcateer/acm-programming-challenge-sandbox
 
 #deploy:
-	
+# code which uses amazon's API to spin up a brand new instance & configure appropriately	
+
