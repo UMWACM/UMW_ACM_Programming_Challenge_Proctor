@@ -41,14 +41,16 @@ web_test_java:
 
 # Does not go into background
 run:
-	docker run --volume /var/run/docker.sock:/var/run/docker.sock \
+	docker run --name acm_proctor \
+	  --volume /var/run/docker.sock:/var/run/docker.sock \
 		--volume $(ChallengesDir):/challenge_db/ \
 		--publish 80:80 \
 		jeffreypmcateer/acm-programming-challenge-proctor
 
 # Runs as daemon in background
 launch:
-	docker run -d --volume /var/run/docker.sock:/var/run/docker.sock \
+	docker run -d --name acm_proctor \
+	  --volume /var/run/docker.sock:/var/run/docker.sock \
 		--volume $(ChallengesDir):/challenge_db/ \
 		--publish 80:80 \
 		jeffreypmcateer/acm-programming-challenge-proctor
