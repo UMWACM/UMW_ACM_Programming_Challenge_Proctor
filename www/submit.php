@@ -108,8 +108,8 @@ if ($correct_tests > 0) {
     $difficulty,
     $lang,
     sql_kinda_escaped($source_code),
-    sql_kinda_escaped($percent_passed),
-    sql_kinda_escaped($hints));
+    $percent_passed,
+    $hints);
   echo "DEBUG: $sql_statement\n\n";
   $l_db->exec($sql_statement);
 }
