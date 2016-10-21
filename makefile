@@ -42,6 +42,7 @@ web_test_java:
 # Does not go into background
 run:
 	docker run --name acm_proctor \
+	  -v /tmp \
 	  --volume /var/run/docker.sock:/var/run/docker.sock \
 		--volume $(ChallengesDir):/challenge_db/ \
 		--publish 80:80 \
@@ -50,6 +51,7 @@ run:
 # Runs as daemon in background
 launch:
 	docker run -d --name acm_proctor \
+	  -v /tmp \
 	  --volume /var/run/docker.sock:/var/run/docker.sock \
 		--volume $(ChallengesDir):/challenge_db/ \
 		--publish 80:80 \
