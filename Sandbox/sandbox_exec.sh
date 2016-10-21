@@ -11,7 +11,7 @@
 #echo "Running sandbox as `whoami` in `pwd`"
 
 # Exec seconds per prompt
-MAX_EXEC_SEC=5
+MAX_EXEC_SEC=20
 
 tmp_dir="$3"
 chal_ins="$4"
@@ -53,7 +53,7 @@ tests() {
       echo | cat "$in_file" - | timeout -t $MAX_EXEC_SEC $@ > "$their_out_file" #2>/dev/null
       delta_s=$(( ($(date +%s) - $now_s) + 2 ))
       if [[ $delta_s -gt $MAX_EXEC_SEC ]]; then
-        echo "[ Your program took longer than $MAX_EXEC_SEC ]"
+        echo "[ Your program took longer than $MAX_EXEC_SEC seconds ]"
       fi
     fi
   done
