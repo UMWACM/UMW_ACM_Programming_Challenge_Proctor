@@ -5,6 +5,9 @@
 # https://docs.docker.com/engine/tutorials/dockervolumes/
 # http://stackoverflow.com/questions/33210678/docker-mount-directory-from-one-container-to-another
 
+# Change this to wherever your challenge dir is
+ChallengesDir=/Users/jeffrey/Projects/ACM_Challenges
+
 all: build test
 
 build:
@@ -16,7 +19,7 @@ test:
 		-v /tmp \
 		--volume /var/run/docker.sock:/var/run/docker.sock \
 		--volume "$(shell pwd)":/dev_code/ \
-		--volume /Users/jeffrey/Projects/ACM_Challenges:/challenge_db/ \
+		--volume $(ChallengesDir):/challenge_db/ \
 		--publish 8080:80 \
 		jeffreypmcateer/acm-programming-challenge-proctor
 
@@ -39,14 +42,14 @@ web_test_java:
 # Does not go into background
 run:
 	docker run --volume /var/run/docker.sock:/var/run/docker.sock \
-		--volume "$(shell pwd)":/db_backups/ \
+		--volume $(ChallengesDir):/challenge_db/ \
 		--publish 80:80 \
 		jeffreypmcateer/acm-programming-challenge-proctor
 
 # Runs as daemon in background
 launch:
 	docker run -d --volume /var/run/docker.sock:/var/run/docker.sock \
-		--volume "$(shell pwd)":/db_backups/ \
+		--volume $(ChallengesDir):/challenge_db/ \
 		--publish 80:80 \
 		jeffreypmcateer/acm-programming-challenge-proctor
 		
