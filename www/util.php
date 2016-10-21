@@ -9,12 +9,12 @@ ini_set('display_errors', 1);
 // Was going to write myself, but then I saw http://stackoverflow.com/a/1162502
 function sql_kinda_escaped($value) {
     $search = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
-    $replace = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");
+    $replace = array("\\\\","\\0","\\n", "\\r", "''", '\"', "\\Z");
     return str_replace($search, $replace, $value);
 }
 
 function reverse_sql_kinda_escaped($value) {
-    $search = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");
+    $search = array("\\\\","\\0","\\n", "\\r", "''", '\"', "\\Z");
     $replace = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
     return str_replace($search, $replace, $value);
 }
