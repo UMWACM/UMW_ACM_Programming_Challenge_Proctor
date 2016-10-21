@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>UMW ACM Bi-Weekly Programming Competition</title>
+    <title>UMW ACM Programming Competition Leaderboard</title>
     <link rel='stylesheet' type='text/css' href='style.css'>
     <meta http-equiv='refresh' content='60'>
     <style>
@@ -21,7 +21,7 @@ echo "<table>";
 echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Difficulty</th><th>Percent Passed</th><th>Hints Used</th> </tr>";
 
 while ($row = $query->fetchArray()) {
-  echo sprintf("<tr> <th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th> </tr>",
+  echo sprintf("<tr> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td> </tr>",
     date('Y-m-d hh:mm', $row['TimeStamp']),
     $row['TeamName'],
     $row['Difficulty']." - ".$row['ProblemID'],
@@ -29,7 +29,7 @@ while ($row = $query->fetchArray()) {
     $row['HintsUsed']); 
 }
 
-echo "</table>"
+echo "</table>";
 
 ?>
 <footer>

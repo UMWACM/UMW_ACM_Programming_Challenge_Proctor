@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 require_once 'leaderboard_db.php';
 require_once 'util.php';
-echo "<pre>";
+echo "<h2><u>Proctor Output:</u></h2> <pre>";
 
 $testid = dechex(rand(0, PHP_INT_MAX));
 $tmp_dir = sys_get_temp_dir()."/chal_sub_".$testid."/";

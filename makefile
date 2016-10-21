@@ -36,12 +36,20 @@ web_test_java:
 							 -F 'SolutionCode=@/Users/jeffrey/Downloads/easy.java' \
 							 http://localhost:8080/submit.php
 
+# Does not go into background
 run:
 	docker run --volume /var/run/docker.sock:/var/run/docker.sock \
 		--volume "$(shell pwd)":/db_backups/ \
 		--publish 80:80 \
 		jeffreypmcateer/acm-programming-challenge-proctor
 
+# Runs as daemon in background
+launch:
+	docker run -d --volume /var/run/docker.sock:/var/run/docker.sock \
+		--volume "$(shell pwd)":/db_backups/ \
+		--publish 80:80 \
+		jeffreypmcateer/acm-programming-challenge-proctor
+		
 push:
 	docker push jeffreypmcateer/acm-programming-challenge-proctor
 	cd Sandbox; docker push jeffreypmcateer/acm-programming-challenge-sandbox

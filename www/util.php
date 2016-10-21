@@ -13,6 +13,12 @@ function sql_kinda_escaped($value) {
     return str_replace($search, $replace, $value);
 }
 
+function reverse_sql_kinda_escaped($value) {
+    $search = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");
+    $replace = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
+    return str_replace($search, $replace, $value);
+}
+
 function currentChallengeBeginDate() {
   global $first_challenge_date;
   $first_challenge_epoch = strtotime($first_challenge_date);
