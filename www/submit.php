@@ -97,7 +97,7 @@ echo "Percent passed: $percent_passed\n";
 if ($correct_tests > 0) {
   echo "Adding entry to database of solvers...\n";
   // todo prevent against injections
-  $l_db->exec(sprintf("INSERT INTO '$l_table' ".
+  $sql_statement = sprintf("INSERT INTO '$l_table' ".
     "('TimeStamp','TeamName','ContactEmails','ProblemID','Difficulty','Language','SourceCode','PercentPassed','HintsUsed')".
     " VALUES ".
     "(%d,          '%s',      '%s',           '%s',        '%s',       '%s',      '%s',         %d,             %d)",
@@ -109,7 +109,9 @@ if ($correct_tests > 0) {
     $lang,
     sql_kinda_escaped($source_code),
     sql_kinda_escaped($percent_passed),
-    sql_kinda_escaped($hints)));
+    sql_kinda_escaped($hints));
+  echo "DEBUG: $sql_statement\n\n";
+  $l_db->exec($sql_statement);
 }
 
 unlink($tmp_src);
