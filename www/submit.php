@@ -100,7 +100,7 @@ if ($correct_tests > 0) {
   $sql_statement = sprintf("INSERT INTO '$l_table' ".
     "('TimeStamp','TeamName','ContactEmails','ProblemID','Difficulty','Language','SourceCode','PercentPassed','HintsUsed')".
     " VALUES ".
-    "(%d,     QUOTE('%s'), QUOTE('%s'),      QUOTE('%s'),   QUOTE('%s'),  QUOTE('%s'), QUOTE('%s'),         %d,             %d)",
+    "(%d,          `%s`,      `%s`,           `%s`,        `%s`,       `%s`,      `%s`,         %d,             %d)",
     time(),
     sql_kinda_escaped($_POST["TeamName"]),
     sql_kinda_escaped($_POST["ContactEmails"]),
