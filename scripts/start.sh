@@ -16,14 +16,14 @@ fi
 # Fix permissions (poorly, I'm using a shotgun here)
 chown root:nginx /var/run/docker.sock
 chmod +rwx /var/run/docker.sock
-chown nginx:nginx /challenge_db/*
-chown nginx:nginx /challenge_db/*/*
-chown nginx:nginx /challenge_db/*/*/*
-chown nginx:nginx /challenge_db/*/*/*/*
-chmod +rwx /challenge_db/*
-chmod +rwx /challenge_db/*/*
-chmod +rwx /challenge_db/*/*/*
-chmod +rwx /challenge_db/*/*/*/*
+chown -R nginx:nginx /challenge_db/*
+#chown nginx:nginx /challenge_db/*/*
+#chown nginx:nginx /challenge_db/*/*/*
+#chown nginx:nginx /challenge_db/*/*/*/*
+chmod -R +rwx /challenge_db/*
+#chmod +rwx /challenge_db/*/*
+#chmod +rwx /challenge_db/*/*/*
+#chmod +rwx /challenge_db/*/*/*/*
 
 # Remove the default php file if it exists
 [[ -e /var/www/html/index.php ]] && rm /var/www/html/index.php

@@ -35,7 +35,7 @@ RUN set -x \
 
 RUN apk add --no-cache bash \
   build-base gcc abuild binutils binutils-doc gcc-doc \
-  python
+  python python3
 
 RUN mkdir /opt/; mkdir /opt/acm_challenge_sandbox/
 COPY ./sandbox_exec.sh /opt/acm_challenge_sandbox/sandbox_exec.sh

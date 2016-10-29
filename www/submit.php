@@ -10,13 +10,15 @@
   </head>
   <body>
     <form action='/submit.php' method='post' enctype='multipart/form-data'>
+      <h1><u>Submit</u></h1>
       <p>Team Name: <input type='text' name='TeamName'></p>
       <p>Contact Emails: <input type='text' name='ContactEmails'></p>
       <p>Problem ID: <input type='text' name='ProblemID'></p>
       <p>Language: <select name='Language'>
         <option value="c">C</option>
         <option value="java">Java</option>
-        <option value="python">Python</option>
+        <option value="python2">Python 2</option>
+        <option value="python3">Python 3</option>
       </select></p>
       <p>Solution File: <input type='file' name='SolutionCode'></p>
       <p>I want hints: <input type='checkbox' name='HintsUsed'></p>

@@ -86,8 +86,11 @@ case "$1" in
     tests "./$bin_name"
   ;;
   
-  python)
+  python2)
     tests python "$2"
+  ;;
+  python3)
+    tests python3 "$2"
   ;;
     
   *)

@@ -32,6 +32,9 @@ iframe {
   width: 600pt;
 }
 
+iframe.doc.halfPage {
+  height: 500pt;
+}
 iframe.doc.page1 {
   height: 1000pt;
 }
