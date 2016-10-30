@@ -34,6 +34,11 @@ RUN mkdir /opt/
 # Remove preexisting index.php
 RUN rm /var/www/html/index.php
 
+# Setup password things and nginx config
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/default.conf /etc/nginx/sites-available/default.conf
+COPY ./conf/htpasswd /etc/nginx/.htpasswd
+
 # Grab our proctor code
 RUN mkdir /opt/acm_challenge_proctor/
 COPY . /opt/acm_challenge_proctor/

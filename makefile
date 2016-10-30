@@ -3,28 +3,22 @@
 # Change this to wherever your challenge dir is
 ChallengesDir=/Users/jeffrey/Projects/ACM_Challenges
 TestServer=localhost
+# todo: log build/test times/results here
+BuildLogFile=build_times.log
 
 all: build
 
-configure:
-	hash docker || { \
-		uname -a; \
-		sudo apt-get update; \
-		sudo apt-get install apt-transport-https ca-certificates; \
-		sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D; \
-		echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list; \
-		sudo apt-get update; \
-		sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual; \
-		sudo apt-get install linux-image-generic-lts-trusty; \
-		sudo apt-get install docker-engine; \
-		sudo service docker start; \
-	}
-
 build:
-	docker build . -t jeffreypmcateer/acm-programming-challenge-proctor
-	cd Sandbox; docker build . -t jeffreypmcateer/acm-programming-challenge-sandbox
+	date +%s > /tmp/.acm_biweekly_build_begin
+	echo -n "$$ACM_BIWEEKLY_ADMIN_USER:" >> ./conf/htpasswd
+	echo "$$ACM_BIWEEKLY_ADMIN_PASS" | openssl passwd -apr1 -stdin >> ./conf/htpasswd
+	docker build -t jeffreypmcateer/acm-programming-challenge-proctor .
+	cd Sandbox; docker build -t jeffreypmcateer/acm-programming-challenge-sandbox .
+	date +%s > /tmp/.acm_biweekly_build_end
+	python -c "print 'Build took', ( $$(cat /tmp/.acm_biweekly_build_end) - $$(cat /tmp/.acm_biweekly_build_begin) ), 'seconds'"
 
 test: push
+	date +%s > /tmp/.acm_biweekly_test_begin
 	docker pull jeffreypmcateer/acm-programming-challenge-proctor
 	docker pull jeffreypmcateer/acm-programming-challenge-sandbox
 	docker run --name acm_dev_proctor \
@@ -41,6 +35,8 @@ test: push
 	echo; echo "[ All Tests Passed ]"; echo
 	@-docker stop acm_dev_proctor
 	@-docker rm acm_dev_proctor
+	date +%s > /tmp/.acm_biweekly_test_end
+	python -c "print 'Test took', ( $$(cat /tmp/.acm_biweekly_test_end) - $$(cat /tmp/.acm_biweekly_test_begin) ), 'seconds'"
 	
  
 stop_test:
@@ -95,5 +91,5 @@ deploy_from_jeff:
 	make push
 	ssh ec2 "git clone https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor.git; cd UMW_ACM_Programming_Challenge_Proctor; git pull; sudo docker stop acm_proctor; sudo docker rm acm_proctor; sudo docker pull jeffreypmcateer/acm-programming-challenge-proctor; sudo docker pull jeffreypmcateer/acm-programming-challenge-sandbox; sudo make launch;"
 	date +%s > /tmp/.acm_biweekly_deploy_end
-	python -c "print 'Deploy took', ( $(cat /tmp/.acm_biweekly_deploy_begin) - $(cat /tmp/.acm_biweekly_deploy_end) ), 'seconds'"
+	python -c "print 'Deploy took', ( $$(cat /tmp/.acm_biweekly_deploy_end) - $$(cat /tmp/.acm_biweekly_deploy_begin) ), 'seconds'"
 
