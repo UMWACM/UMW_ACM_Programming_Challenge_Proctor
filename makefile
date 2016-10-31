@@ -1,24 +1,20 @@
-# https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor
+# builds https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor
+
+SHELL := /bin/bash
 
 # Change this to wherever your challenge dir is
 ChallengesDir=/Users/jeffrey/Projects/ACM_Challenges
 TestServer=localhost
-# todo: log build/test times/results here
-BuildLogFile=build_times.log
 
-all: build
+all:
+	./setup.sh
+	make build
 
 build:
-	date +%s > /tmp/.acm_biweekly_build_begin
-	echo -n "$$ACM_BIWEEKLY_ADMIN_USER:" >> ./conf/htpasswd
-	echo "$$ACM_BIWEEKLY_ADMIN_PASS" | openssl passwd -apr1 -stdin >> ./conf/htpasswd
-	docker build -t jeffreypmcateer/acm-programming-challenge-proctor .
-	cd Sandbox; docker build -t jeffreypmcateer/acm-programming-challenge-sandbox .
-	date +%s > /tmp/.acm_biweekly_build_end
-	python -c "print 'Build took', ( $$(cat /tmp/.acm_biweekly_build_end) - $$(cat /tmp/.acm_biweekly_build_begin) ), 'seconds'"
+	chmod +x ./build.sh; ./build.sh
 
 test: push
-	date +%s > /tmp/.acm_biweekly_test_begin
+	@date +%s > /tmp/.acm_biweekly_test_begin
 	docker pull jeffreypmcateer/acm-programming-challenge-proctor
 	docker pull jeffreypmcateer/acm-programming-challenge-sandbox
 	docker run --name acm_dev_proctor \
@@ -30,19 +26,21 @@ test: push
 		jeffreypmcateer/acm-programming-challenge-proctor &
 	# wait for server to come up
 	sleep 16
-	[[ "$$(w3m -dump http://$(TestServer):8080/ | head -n 1)" == "UMW ACM Bi-Weekly Programming Competition" ]] || make stop_test
+	@./tests/webpage_opens.sh || make stop_test
 	
-	echo; echo "[ All Tests Passed ]"; echo
-	@-docker stop acm_dev_proctor
-	@-docker rm acm_dev_proctor
-	date +%s > /tmp/.acm_biweekly_test_end
-	python -c "print 'Test took', ( $$(cat /tmp/.acm_biweekly_test_end) - $$(cat /tmp/.acm_biweekly_test_begin) ), 'seconds'"
 	
- 
+	@echo; echo "[ All Tests Passed ]"; echo
+	@-docker stop acm_dev_proctor >/dev/null
+	@-docker rm acm_dev_proctor >/dev/null
+	@date +%s > /tmp/.acm_biweekly_test_end
+	@python -c "print 'Test took', ( $$(cat /tmp/.acm_biweekly_test_end) - $$(cat /tmp/.acm_biweekly_test_begin) ), 'seconds'"
+	
+
+# Cleans things up after a failed test
 stop_test:
 	@-docker stop acm_dev_proctor
 	@-docker rm acm_dev_proctor
-	echo; echo "[ Test Failed ]"; echo
+	@echo; echo "[ Test Failed ]"; echo
 	@false
 
 web_test_py:

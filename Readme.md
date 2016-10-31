@@ -8,7 +8,9 @@ Current Live URL: http://ec2-54-235-236-69.compute-1.amazonaws.com/
 
 ## Getting up and running
 
-Prerequisite: docker. You do not need to have a docker server on your own machine, but you must have a client which is connected to a docker server somewhere.
+Prerequisites:
+ * make, bash, curl, the usual utilities for building software
+ * docker. You do not need to have a docker server on your own machine, but you must have a client which is connected to a docker server somewhere.
 
 Running `make` will build both docker images and run a test container.
 Initially this process may take some time (~10 minutes), as the base packages must be installed and updated. Subsequent builds will be much faster due to docker's caching mechanism.
