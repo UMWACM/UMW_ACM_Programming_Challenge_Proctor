@@ -17,5 +17,13 @@ read test_server
 if [[ "$test_server" == "" ]]; then
   test_server=localhost
 fi
-echo "export test_server=$test_server" > .user_config
+echo "export test_server=$test_server" >> .user_config
+
+printf 'What username are you using for the admin page? '
+read ACM_BIWEEKLY_ADMIN_USER
+echo "export ACM_BIWEEKLY_ADMIN_USER=$ACM_BIWEEKLY_ADMIN_USER" >> .user_config
+
+printf 'What password are you using for the admin page? '
+read ACM_BIWEEKLY_ADMIN_PASS
+echo "export ACM_BIWEEKLY_ADMIN_PASS=$ACM_BIWEEKLY_ADMIN_PASS" >> .user_config
 
