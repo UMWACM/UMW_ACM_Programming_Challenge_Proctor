@@ -20,7 +20,7 @@ fi
 echo -n "$ACM_BIWEEKLY_ADMIN_USER:" >> ./conf/htpasswd
 echo "$ACM_BIWEEKLY_ADMIN_PASS" | openssl passwd -apr1 -stdin >> ./conf/htpasswd
 docker build -t jeffreypmcateer/acm-programming-challenge-proctor .
-cd Sandbox; docker build -t jeffreypmcateer/acm-programming-challenge-sandbox .
+cd Sandbox; docker build -t jeffreypmcateer/acm-programming-challenge-sandbox .; cd ..;
 
 date +%s > /tmp/.acm_biweekly_build_end
 

@@ -26,6 +26,9 @@ RUN pip install when-changed
 RUN apk add --no-cache sqlite
 RUN apk add --no-cache --force php-sqlite3
 
+# Install php extensions for phpMyAdmin
+RUN apk add php-json php-mysqli
+
 # Add docker so we can spin up a container to run submitted code in
 RUN apk add docker
 

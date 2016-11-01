@@ -25,6 +25,14 @@ stop_test:
 	@echo; echo "[ Test Failed ]"; echo
 	@false
 
+test_run:
+	docker run --name acm_proctor \
+	  -v /tmp \
+	  --volume /var/run/docker.sock:/var/run/docker.sock \
+		--volume $(ChallengesDir):/challenge_db/ \
+		--publish 8080:80 \
+		jeffreypmcateer/acm-programming-challenge-proctor:latest
+
 web_test_py:
 	curl -X POST -F 'TeamName=Some_Team' \
 							 -F 'ContactEmails=Doze_Emails' \
