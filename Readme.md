@@ -4,7 +4,7 @@ This repository holds code for the UMW ACM programming challenge proctor. The go
 ## Current live system
 This year's Programming Competition Coordinator, Jeffrey McAteer, has offered to host the official proctor on one of his AWS instances. UMW ACM has plans to aquire an ec2 account for a more permanent server, so check back here or on the latest instructions sheet for details.
 
-Current Live URL: http://ec2-54-235-236-69.compute-1.amazonaws.com/
+Current Live URL: http://ec2-54-211-6-143.compute-1.amazonaws.com/
 
 ## Getting up and running
 
