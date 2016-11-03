@@ -23,10 +23,6 @@ $subdirectories = false;
 //if any of the databases do not exist as they are referenced by their path, they will be created automatically
 $databases = array(
 	array(
-		'path'=> '/var/lib/acm_challenge_proctor/challenges.db',
-		'name'=> 'Challenges Database'
-	),
-	array(
 		'path'=> '/var/lib/acm_challenge_proctor/leaderboard.db',
 		'name'=> 'Leaderboard Database'
 	),

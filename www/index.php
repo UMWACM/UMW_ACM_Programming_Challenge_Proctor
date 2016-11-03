@@ -8,6 +8,9 @@
     <h1>UMW ACM Bi-Weekly Programming Competition</h1>
     
     <h2 style='display:inline-block;'><a onclick='toggle("About", this)' id='first'>About</a></h2>
+    <h2 style='display:inline-block;'><a onclick='toggle("Easy", this)'>Easy</a></h2>
+    <h2 style='display:inline-block;'><a onclick='toggle("Medium", this)'>Medium</a></h2>
+    <h2 style='display:inline-block;'><a onclick='toggle("Difficult", this)'>Difficult</a></h2>
     <h2 style='display:inline-block;'><a onclick='toggle("Submit", this)'>Submit</a></h2>
     <h2 style='display:inline-block;'><a onclick='toggle("Leaderboard", this)'>Leaderboard</a></h2>
     <br>
@@ -17,6 +20,27 @@
       <iframe id='Submit' style='display:none;' class='halfPage doc' src='/submit.php'>
       Please turn on iFrame support, or view the leaderboard <a href='/submit.php'>here</a>
       </iframe>
+      
+      <pre id='Easy' style='display:none;' class='iframe-like halfPage doc'>
+<?php
+require_once 'util.php';
+echo rtrim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/easy/description.txt") );
+?>
+      </pre>
+      
+      <pre id='Medium' style='display:none;' class='iframe-like halfPage doc'>
+<?php
+require_once 'util.php';
+echo rtrim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/medium/description.txt") );
+?>
+      </pre>
+      
+      <pre id='Difficult' style='display:none;' class='iframe-like halfPage doc'>
+<?php
+require_once 'util.php';
+echo rtrim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/difficult/description.txt") );
+?>
+      </pre>
       
       <iframe id='Leaderboard' style='display:none;' class='page1 doc' src='/leaderboard.php'>Please turn on iFrame support, or view the leaderboard <a href='/leaderboard.php'>here</a></iframe>
     

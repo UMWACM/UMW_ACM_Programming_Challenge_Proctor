@@ -18,15 +18,16 @@ require_once 'leaderboard_db.php';
 $query = $l_db->query("SELECT * FROM '$l_table'");
 
 echo "<table>";
-echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Difficulty</th><th>Percent Passed</th><th>Hints Used</th> </tr>";
+echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Difficulty</th><th>Percent Passed</th><th>Hints Used</th><th>Number of Submissions</th> </tr>";
 
 while ($row = $query->fetchArray()) {
-  echo sprintf("<tr> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td> </tr>",
+  echo sprintf("<tr> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td> </tr>",
     date('Y-m-d hh:mm', $row['TimeStamp']),
     $row['TeamName'],
     $row['Difficulty']." - ".$row['ProblemID'],
     $row['PercentPassed'],
-    $row['HintsUsed']); 
+    $row['HintsUsed'],
+    $row['SubmissionCount']); 
 }
 
 echo "</table>";

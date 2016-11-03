@@ -23,7 +23,15 @@ h2 {
   display: none;
 }
 
-iframe {
+pre.iframe-like {
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  padding: 6pt 8pt;
+}
+
+iframe, .iframe-like {
   background-color: white;
   border: solid;
   border-color: #606060;
@@ -32,13 +40,13 @@ iframe {
   width: 600pt;
 }
 
-iframe.doc.halfPage {
+iframe.doc.halfPage, .iframe-like.doc.halfPage {
   height: 500pt;
 }
-iframe.doc.page1 {
+iframe.doc.page1, .iframe-like.doc.page1 {
   height: 1000pt;
 }
-iframe.doc.page2 {
+iframe.doc.page2, .iframe-like.doc.page2 {
   height: 2000pt;
 }
 

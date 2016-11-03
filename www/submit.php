@@ -98,21 +98,44 @@ echo "Percent passed: $percent_passed\n";
 
 if ($correct_tests > 0) {
   echo "Adding entry to database of solvers...\n";
-  // todo prevent against injections
-  $sql_statement = sprintf("INSERT INTO '$l_table' ".
-    "('TimeStamp','TeamName','ContactEmails','ProblemID','Difficulty','Language','SourceCode','PercentPassed','HintsUsed')".
-    " VALUES ".
-    "(%d,          '%s',      '%s',           '%s',        '%s',       '%s',      '%s',         %d,             %d)",
-    time(),
-    sql_kinda_escaped($_POST["TeamName"]),
-    sql_kinda_escaped($_POST["ContactEmails"]),
-    sql_kinda_escaped($_POST["ProblemID"]),
-    $difficulty,
-    $lang,
-    sql_kinda_escaped($source_code),
-    $percent_passed,
-    $hints);
-  echo "DEBUG: $sql_statement\n\n";
+  $submission_num = 1;
+  $sql_statement = "";
+  $query = $l_db->query("SELECT * FROM '$l_table' WHERE TeamName=".sql_kinda_escaped($_POST["TeamName"])." AND Difficulty=".$difficulty);
+  if ($row = $query->fetchArray()) {
+    $submission_num += intval($row['SubmissionCount'], 10);
+    $sql_statement = sprintf("UPDATE '$l_table' SET ".
+      "'TimeStamp'=%d,'TeamName'=%s,'ContactEmails'=%s,'ProblemID'=%s,'Difficulty'=%s,'Language'=%s,'SourceCode'=%s,'PercentPassed'=%d,'HintsUsed'=%d,'SubmissionCount'=%d".
+      " WHERE ".
+      " 'TeamName'=%s",
+      time(),
+      sql_kinda_escaped($_POST["TeamName"]),
+      sql_kinda_escaped($_POST["ContactEmails"]),
+      sql_kinda_escaped($_POST["ProblemID"]),
+      $difficulty,
+      $lang,
+      sql_kinda_escaped($source_code),
+      $percent_passed,
+      $hints,
+      $submission_num,
+      sql_kinda_escaped($_POST["TeamName"]));
+  }
+  else {
+    $sql_statement = sprintf("INSERT INTO '$l_table' ".
+      "('TimeStamp','TeamName','ContactEmails','ProblemID','Difficulty','Language','SourceCode','PercentPassed','HintsUsed','SubmissionCount')".
+      " VALUES ".
+      "(%d,          '%s',      '%s',           '%s',        '%s',       '%s',      '%s',         %d,             %d,         %d)",
+      time(),
+      sql_kinda_escaped($_POST["TeamName"]),
+      sql_kinda_escaped($_POST["ContactEmails"]),
+      sql_kinda_escaped($_POST["ProblemID"]),
+      $difficulty,
+      $lang,
+      sql_kinda_escaped($source_code),
+      $percent_passed,
+      $hints,
+      $submission_num);
+  }
+  //echo "DEBUG: $sql_statement\n\n";
   $l_db->exec($sql_statement);
 }
 

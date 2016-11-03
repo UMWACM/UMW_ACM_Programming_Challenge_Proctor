@@ -1,6 +1,6 @@
 <?php
 
-$first_challenge_date = "2016/10/20";
+$first_challenge_date = "2016/10/21";
 
 // Turn these on during development
 error_reporting(E_ALL);
@@ -65,7 +65,7 @@ function getChalDir($id, $back) {
   } else if ($id == $difficult_id) {
     $difficulty = "difficult";
   } else {
-    echo "Problem with ID $id not found for week".
+    echo "Problem with ID $id not found for week". // I see a bug here -J
          currentChallengeBeginDate().", going back 1 week...\n";
     return getChalDir($id, $back + 1);
     
