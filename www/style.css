@@ -1,16 +1,20 @@
+/** Using some colors from pallet: http://www.colourlovers.com/palette/1090282/okay_so_i_lied */
+
+* { /** Bad practice */
+  color: #1E0C42;
+}
 
 html {
   background: url(bg.png);
   background-size: 400pt auto;
   background-repeat: no-repeat;
   background-position: right 0px top;
-  background-color: #40bfff;
+  background-color: #37ced6;
 }
 
 body {
   margin: 0;
   padding: 6pt;
-  /*background-color: rgba(255, 255, 255, 0.4);*/
 }
 
 h2 {
@@ -27,6 +31,13 @@ h2>a {
 pre>code {
   height: 240px;
   overflow-y: scroll;
+}
+
+tr.current {
+  background-color: #ffffff;
+}
+tr.history {
+  background-color: #d0d0d0;
 }
 
 .hidden {

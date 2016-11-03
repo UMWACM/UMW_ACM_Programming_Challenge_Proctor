@@ -2,7 +2,7 @@
 
 date +%s > /tmp/.acm_biweekly_build_begin
 
-if [[ ! -e .user_config]]; then
+if ! [[ -e .user_config ]]; then
   ./setup.sh
 fi
 

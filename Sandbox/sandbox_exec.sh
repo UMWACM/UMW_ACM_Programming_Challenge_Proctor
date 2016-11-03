@@ -47,7 +47,7 @@ tests() {
     if [[ "$DEBUG" == true ]]; then
       # Testing integrity problem if this is used without care
       echo "Running test with DEBUG == $DEBUG"
-      echo | cat "$in_file" - | $@ > "$their_out_file"
+      echo | cat "$in_file" - | $@ > "$their_out_file" 2>&1
     else
       now_s=$(date +%s)
       echo | cat "$in_file" - | timeout -t $MAX_EXEC_SEC $@ > "$their_out_file" #2>/dev/null

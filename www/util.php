@@ -51,9 +51,9 @@ function previousChallengeBeginDate($num) {
 function getChalDir($id, $back) {
   $prefix = "/challenge_db/".previousChallengeBeginDate($back);
   
-  $easy_id = strtolower(rtrim( file_get_contents($prefix."/easy/id.txt") ));
-  $medium_id = strtolower(rtrim( file_get_contents($prefix."/medium/id.txt") ));
-  $difficult_id = strtolower(rtrim( file_get_contents($prefix."/difficult/id.txt") ));
+  $easy_id = strtolower(trim( file_get_contents($prefix."/easy/id.txt") ));
+  $medium_id = strtolower(trim( file_get_contents($prefix."/medium/id.txt") ));
+  $difficult_id = strtolower(trim( file_get_contents($prefix."/difficult/id.txt") ));
   
   $difficulty = "unknown";
   if ($id == $easy_id) {

@@ -19,13 +19,14 @@
 
 require_once 'leaderboard_db.php';
 
-$query = $l_db->query("SELECT * FROM '$l_table'");
+$query = $l_db->query("SELECT * FROM '$l_table' ORDER BY TimeStamp DESC");
 
 echo "<table>";
 echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Email(s)</th><th>Difficulty</th><th>Percent Passed</th><th>Hints Used</th><th>Submissions</th><th>Source Code</th> </tr>";
 
 while ($row = $query->fetchArray()) {
-  echo sprintf("<tr> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td style='padding:0;'><pre><code class='%s'>%s</code></pre></td> </tr>",
+  echo sprintf("<tr class='%s'> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td style='padding:0;'><pre><code class='%s'>%s</code></pre></td> </tr>",
+    strtotime(currentChallengeBeginDate()) - intval($row['TimeStamp']) < 0? "current":"history",
     date('Y-m-d H:i', $row['TimeStamp']),
     $row['TeamName'],
     $row['ContactEmails'],

@@ -5,7 +5,7 @@
     <link rel='stylesheet' type='text/css' href='style.css'>
   </head>
   <body>
-    <h1>UMW ACM Bi-Weekly Programming Competition</h1>
+    <h1>UMW ACM Bi-Weekly Programming Competition <a href='https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor/issues/new'><img title="Submit a bug report" height='36px' style='position:relative;top:12px;' src='/bugreport.png'></a></h1>
     
     <h2 style='display:inline-block;'><a onclick='toggle("About", this)' id='first'>About</a></h2>
     <h2 style='display:inline-block;'><a onclick='toggle("Easy", this)'>Easy</a></h2>
@@ -26,21 +26,21 @@
       <pre id='Easy' style='display:none;' class='iframe-like halfPage doc'>
 <?php
 require_once 'util.php';
-echo rtrim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/easy/description.txt") );
+echo trim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/easy/description.txt") );
 ?>
       </pre>
       
       <pre id='Medium' style='display:none;' class='iframe-like halfPage doc'>
 <?php
 require_once 'util.php';
-echo rtrim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/medium/description.txt") );
+echo trim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/medium/description.txt") );
 ?>
       </pre>
       
       <pre id='Difficult' style='display:none;' class='iframe-like halfPage doc'>
 <?php
 require_once 'util.php';
-echo rtrim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/difficult/description.txt") );
+echo trim( file_get_contents("/challenge_db/".currentChallengeBeginDate()."/difficult/description.txt") );
 ?>
       </pre>
       

@@ -23,6 +23,7 @@ The web interface provides two utilities for the administration of the tests, re
 
 ### v1.0
 Changed the challenge period to begin on Fridays instead of Mondays. This is currently hard-coded in php.
+Container size is aroung 550mb.
 #### Submission Language support
 * C (untested)
 * Java (tested)

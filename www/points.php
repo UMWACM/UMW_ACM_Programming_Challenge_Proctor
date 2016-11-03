@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>UMW ACM Programming Competition Leaderboard</title>
+    <title>UMW ACM Programming Competition Points Log</title>
     <link rel='stylesheet' type='text/css' href='style.css'>
     <meta http-equiv='refresh' content='60'>
     <style>
@@ -10,7 +10,7 @@
     </style>
   </head>
   <body>
-    <h1><u>ACM Bi-Weekly Challenge Leaderboard</u></h1>
+    <h1><u>UMW ACM Programming Competition Points Log</u></h1>
 <?php
 
 require_once 'leaderboard_db.php';

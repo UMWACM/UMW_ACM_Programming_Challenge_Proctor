@@ -47,9 +47,9 @@ if (isset($_POST['HintsUsed'])) {
   echo "[ Using Hints ]\n";
 }
 
-$lang=strtolower(rtrim( $_POST["Language"] ));
+$lang=strtolower(trim( $_POST["Language"] ));
 
-$id=strtolower(rtrim( $_POST["ProblemID"] ));
+$id=strtolower(trim( $_POST["ProblemID"] ));
 echo "[ ID $id ]\n";
 
 $chal_dir = getChalDir($id, 0);
@@ -86,14 +86,25 @@ while ($i < 1000) {
   if (!file_exists($their_out_file)) {
     continue;
   }
-  $correct_out = strtolower(rtrim( file_get_contents($correct_out_file) ));
-  $their_out = strtolower(rtrim( file_get_contents($their_out_file) ));
-  if (strcmp($their_out,$correct_out) == 0) {
+  $correct_out = strtolower(trim( file_get_contents($correct_out_file) ));
+  
+  $their_out = strtolower(trim( file_get_contents($their_out_file) ));
+  
+  exec("diff --ignore-space-change --ignore-blank-lines --ignore-case '".$correct_out_file."' '".$their_out_file."'", $diff_output, $diff_exit_code);
+  
+  
+  $diff_output = implode($diff_output, ""); // Join array with ""
+  echo "\$diff_output=$diff_output\n";
+  echo "\$diff_exit_code=$diff_exit_code\n";
+  // Use 2 methods as PHP's string comparison is flaky.
+  if ($their_out === $correct_out || ($diff_exit_code == 0 && $diff_output === "")) {
     $correct_tests++;
   }
 }
+$total_tests--;
 
 $percent_passed = round(100 * ($correct_tests/$total_tests));
+echo "Passed $correct_tests out of $total_tests\n";
 echo "Percent passed: $percent_passed\n";
 
 if ($correct_tests > 0) {
