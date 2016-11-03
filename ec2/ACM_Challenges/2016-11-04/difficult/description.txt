@@ -1,0 +1,27 @@
+Sum Calc        Difficult - 3513fb         ACM BiWeekly Chal. Oct 21-Oct 31
+
+
+You will write a program that reads a positive integer from STDIN representing the number of integer inputs to follow. Your program will then read each of these integers, sum them, and print the result to STDOUT.
+
+
+Example Input
+3
+1
+2
+3
+
+
+Example Output
+6
+
+
+Example Input
+4
+1
+-2
+3
+2
+
+
+Example Output
+4
