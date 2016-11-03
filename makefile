@@ -55,10 +55,9 @@ deploy: push
 deploy_from_jeff:
 	date +%s > /tmp/.acm_biweekly_deploy_begin
 	rsync -r ~/Projects/ACM_Challenges ec2:./
-	ssh ec2 "rm -rf UMW_ACM_Programming_Challenge_Proctor; git clone https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor.git"
-	ssh ec2 "sed -i 's/\/Users\/jeffrey\/Projects\/ACM_Challenges\//\/home\/ubuntu\/ACM_Challenges/g' UMW_ACM_Programming_Challenge_Proctor/makefile"
-	ssh ec2 "sudo docker pull jeffreypmcateer/acm-programming-challenge-proctor; sudo docker pull jeffreypmcateer/acm-programming-challenge-sandbox; sudo docker stop acm_proctor; sudo docker rm acm_proctor"
-	ssh ec2 "docker run -d --name acm_proctor -v /tmp --volume /var/run/docker.sock:/var/run/docker.sock --volume /home/ubuntu/ACM_Challenges:/challenge_db/ --publish 80:80 jeffreypmcateer/acm-programming-challenge-proctor:latest"
+	ssh ec2 "sudo docker pull jeffreypmcateer/acm-programming-challenge-proctor; sudo docker pull jeffreypmcateer/acm-programming-challenge-sandbox;"
+	ssh ec2 "sudo docker stop acm_proctor; sudo docker rm acm_proctor;"
+	ssh ec2 "docker run -d --name acm_proctor -v /tmp --volume /var/run/docker.sock:/var/run/docker.sock --volume /home/ubuntu/ACM_Challenges:/challenge_db/ --publish 80:80 jeffreypmcateer/acm-programming-challenge-proctor:latest;"
 	date +%s > /tmp/.acm_biweekly_deploy_end
 	python -c "print 'Deploy took', ( $$(cat /tmp/.acm_biweekly_deploy_end) - $$(cat /tmp/.acm_biweekly_deploy_begin) ), 'seconds'"
 
