@@ -2,6 +2,12 @@
 
 date +%s > /tmp/.acm_biweekly_build_begin
 
+if [[ ! -e .user_config]]; then
+  ./setup.sh
+fi
+
+source .user_config
+
 if ! hash openssl; then
   echo "Must install openssl to build"
   exit 1
