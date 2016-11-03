@@ -13,6 +13,8 @@
     <h2 style='display:inline-block;'><a onclick='toggle("Difficult", this)'>Difficult</a></h2>
     <h2 style='display:inline-block;'><a onclick='toggle("Submit", this)'>Submit</a></h2>
     <h2 style='display:inline-block;'><a onclick='toggle("Leaderboard", this)'>Leaderboard</a></h2>
+    <h2 style='display:inline-block;'><a href='/phpliteadmin.php'>DB Admin</a></h2>
+    <h2 style='display:inline-block;'><a href='/advanced_leaderboard_6b60c608.php'>Admin Leaderboard</a></h2>
     <br>
     
       <iframe id='About' class='page2 doc' src='generated_instructions.html'>Your iframes aren't working! Don't worry, the document is <a href='generated_instructions.html'>here</a>.</iframe>

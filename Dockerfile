@@ -20,6 +20,7 @@ RUN apk upgrade
 # Install inotify-tools for inotifywait, rsync, python for when-changed, java for jython
 RUN apk add --no-cache inotify-tools rsync python openjdk7-jre
 # Watches directory and runs code on changes (used for development)
+RUN pip install --upgrade pip
 RUN pip install when-changed
 
 # Install sqlite to keep track of data

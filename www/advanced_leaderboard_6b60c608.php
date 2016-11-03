@@ -22,16 +22,17 @@ require_once 'leaderboard_db.php';
 $query = $l_db->query("SELECT * FROM '$l_table'");
 
 echo "<table>";
-echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Email(s)</th><th>Difficulty</th><th>Percent Passed</th><th>Hints Used</th><th>Source Code</th> </tr>";
+echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Email(s)</th><th>Difficulty</th><th>Percent Passed</th><th>Hints Used</th><th>Submissions</th><th>Source Code</th> </tr>";
 
 while ($row = $query->fetchArray()) {
-  echo sprintf("<tr> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td style='padding:0;'><pre><code class='%s'>%s</code></pre></td> </tr>",
-    date('Y-m-d hh:mm', $row['TimeStamp']),
+  echo sprintf("<tr> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td style='padding:0;'><pre><code class='%s'>%s</code></pre></td> </tr>",
+    date('Y-m-d H:i', $row['TimeStamp']),
     $row['TeamName'],
     $row['ContactEmails'],
     $row['Difficulty']." - ".$row['ProblemID'],
     $row['PercentPassed'],
     $row['HintsUsed'],
+    $row['SubmissionCount'],
     strtolower($row['Language']),
     // Warning, this allows arbitrary javascript in source code to be eval'd by browser
     // Will fix someday with an anti-js regex

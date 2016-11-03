@@ -22,7 +22,7 @@ echo "<tr> <th>Timestamp</th><th>Team Name</th><th>Difficulty</th><th>Percent Pa
 
 while ($row = $query->fetchArray()) {
   echo sprintf("<tr> <td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td> </tr>",
-    date('Y-m-d hh:mm', $row['TimeStamp']),
+    date('Y-m-d H:i', $row['TimeStamp']),
     $row['TeamName'],
     $row['Difficulty']." - ".$row['ProblemID'],
     $row['PercentPassed'],

@@ -19,6 +19,16 @@ h2 {
   cursor: pointer;
 }
 
+h2>a {
+  color: black;
+  text-decoration: none;
+}
+
+pre>code {
+  height: 240px;
+  overflow-y: scroll;
+}
+
 .hidden {
   display: none;
 }
@@ -29,6 +39,7 @@ pre.iframe-like {
   word-wrap: break-word;
   white-space: pre-wrap;
   padding: 6pt 8pt;
+  overflow-y: scroll;
 }
 
 iframe, .iframe-like {

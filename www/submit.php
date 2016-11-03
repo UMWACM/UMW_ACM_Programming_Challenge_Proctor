@@ -71,7 +71,7 @@ passthru($docker_run_cmd);
 // echo $docker_run_cmd; // Development
 
 // Loop through and compare their out files with our out files
-$out_dir=$chal_dir."/out";
+$out_dir = $chal_dir."/out";
 $total_tests = 0;
 $correct_tests = 0;
 $i = -1;
@@ -97,16 +97,18 @@ $percent_passed = round(100 * ($correct_tests/$total_tests));
 echo "Percent passed: $percent_passed\n";
 
 if ($correct_tests > 0) {
-  echo "Adding entry to database of solvers...\n";
+  
   $submission_num = 1;
   $sql_statement = "";
-  $query = $l_db->query("SELECT * FROM '$l_table' WHERE TeamName=".sql_kinda_escaped($_POST["TeamName"])." AND Difficulty=".$difficulty);
-  if ($row = $query->fetchArray()) {
+  $query = $l_db->query("SELECT * FROM '$l_table' WHERE TeamName='".sql_kinda_escaped($_POST["TeamName"])."' AND Difficulty='".$difficulty."'");
+  $row = $query->fetchArray();
+  if ($row && $row['TeamName'] == sql_kinda_escaped($_POST["TeamName"])) {
+    echo "Updating previous solution...\n";
     $submission_num += intval($row['SubmissionCount'], 10);
     $sql_statement = sprintf("UPDATE '$l_table' SET ".
-      "'TimeStamp'=%d,'TeamName'=%s,'ContactEmails'=%s,'ProblemID'=%s,'Difficulty'=%s,'Language'=%s,'SourceCode'=%s,'PercentPassed'=%d,'HintsUsed'=%d,'SubmissionCount'=%d".
+      "'TimeStamp'=%d,'TeamName'='%s','ContactEmails'='%s','ProblemID'='%s','Difficulty'='%s','Language'='%s','SourceCode'='%s','PercentPassed'=%d,'HintsUsed'=%d,'SubmissionCount'=%d".
       " WHERE ".
-      " 'TeamName'=%s",
+      " TeamName='%s' AND Difficulty='%s'",
       time(),
       sql_kinda_escaped($_POST["TeamName"]),
       sql_kinda_escaped($_POST["ContactEmails"]),
@@ -117,9 +119,11 @@ if ($correct_tests > 0) {
       $percent_passed,
       $hints,
       $submission_num,
-      sql_kinda_escaped($_POST["TeamName"]));
+      sql_kinda_escaped($_POST["TeamName"]),
+      $difficulty);
   }
   else {
+    echo "Adding entry to database of solvers...\n";
     $sql_statement = sprintf("INSERT INTO '$l_table' ".
       "('TimeStamp','TeamName','ContactEmails','ProblemID','Difficulty','Language','SourceCode','PercentPassed','HintsUsed','SubmissionCount')".
       " VALUES ".
