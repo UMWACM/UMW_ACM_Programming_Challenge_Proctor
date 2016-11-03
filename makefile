@@ -57,7 +57,7 @@ deploy_from_jeff:
 	make push
 	rsync -r ~/Projects/ACM_Challenges ec2:./
 	ssh ec2 "rm -rf UMW_ACM_Programming_Challenge_Proctor; git clone https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor.git"
-	ssh ec2 "sed -i 's/\/Users\/jeffrey\/Projects\/ACM_Challenges\//\/home\/ubuntu\/ACM_Challenges\//g' UMW_ACM_Programming_Challenge_Proctor/makefile"
+	ssh ec2 "sed -i 's/\/Users\/jeffrey\/Projects\/ACM_Challenges\//\/home\/ubuntu\/ACM_Challenges/g' UMW_ACM_Programming_Challenge_Proctor/makefile"
 	ssh ec2 "sudo docker stop acm_proctor; sudo docker rm acm_proctor; sudo docker pull jeffreypmcateer/acm-programming-challenge-proctor; sudo docker pull jeffreypmcateer/acm-programming-challenge-sandbox"
 	ssh ec2 "cd UMW_ACM_Programming_Challenge_Proctor; sudo make launch"
 	date +%s > /tmp/.acm_biweekly_deploy_end
