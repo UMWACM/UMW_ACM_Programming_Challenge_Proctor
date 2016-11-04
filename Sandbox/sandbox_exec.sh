@@ -47,15 +47,16 @@ tests() {
     if [[ "$DEBUG" == true ]]; then
       # Testing integrity problem if this is used without care
       echo "Running test with DEBUG == $DEBUG"
-      echo | cat "$in_file" - | $@ > "$their_out_file" 2>&1
+      echo | cat "$in_file" - | $@ > "$their_out_file" #2>&1
     else
       now_s=$(date +%s)
-      echo | cat "$in_file" - | timeout -t $MAX_EXEC_SEC $@ > "$their_out_file" #2>/dev/null
+      echo | cat "$in_file" - | timeout -t $MAX_EXEC_SEC $@ > "$their_out_file" #2>&1
       delta_s=$(( ($(date +%s) - $now_s) + 2 ))
       if [[ $delta_s -gt $MAX_EXEC_SEC ]]; then
         echo "[ Your program took longer than $MAX_EXEC_SEC seconds ]"
       fi
     fi
+    
   done
 }
 
@@ -77,18 +78,22 @@ case "$1" in
     
   c)
     bin_name="${2%.*}"
-    echo "[ Compiling c binary ${bin_name} in file $2 ]"
+    echo "[ Compiling C binary $bin_name in file $2 ]"
     gcc "$2" -o "$bin_name" || exit 1
     if [[ ! -e "$bin_name" ]]; then
       echo 'C binary not found after compilation'
       exit 1
     fi
+    chmod +x "./$bin_name"
     tests "./$bin_name"
   ;;
+  
+  # todo: add CPP support
   
   python|python2)
     tests python "$2"
   ;;
+  
   python3)
     tests python3 "$2"
   ;;
@@ -97,3 +102,7 @@ case "$1" in
     echo "[ Language $1 not supported ]"
   ;;
 esac
+
+
+
+# Genise->Nycie

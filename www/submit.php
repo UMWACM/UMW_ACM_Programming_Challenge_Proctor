@@ -94,8 +94,6 @@ while ($i < 1000) {
   
   
   $diff_output = implode($diff_output, ""); // Join array with ""
-  echo "\$diff_output=$diff_output\n";
-  echo "\$diff_exit_code=$diff_exit_code\n";
   // Use 2 methods as PHP's string comparison is flaky.
   if ($their_out === $correct_out || ($diff_exit_code == 0 && $diff_output === "")) {
     $correct_tests++;

@@ -5,7 +5,7 @@
     <link rel='stylesheet' type='text/css' href='style.css'>
   </head>
   <body>
-    <h1>UMW ACM Bi-Weekly Programming Competition <a href='https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor/issues/new'><img title="Submit a bug report" height='36px' style='position:relative;top:12px;' src='/bugreport.png'></a></h1>
+    <h1>UMW ACM Bi-Weekly Programming Competition <a href='https://github.com/Jeffrey-P-McAteer/UMW_ACM_Programming_Challenge_Proctor/issues'><img title="Submit a bug report" height='36px' style='position:relative;top:12px;' src='/bugreport.png'></a></h1>
     
     <h2 style='display:inline-block;'><a onclick='toggle("About", this)' id='first'>About</a></h2>
     <h2 style='display:inline-block;'><a onclick='toggle("Easy", this)'>Easy</a></h2>

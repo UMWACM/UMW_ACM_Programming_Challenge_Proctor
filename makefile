@@ -53,12 +53,11 @@ update_problems:
 	-[[ $(shell hostname) == "Jeffreys-MacBook-Pro.local" ]] && make update_problems_from_jeff
 
 deploy: push
-	@printf 'Have you made a database backup? '; read yn; [ "$yn" == y ] || { \
-		echo; echo; echo; \
-		echo "Get a backup from http://ec2-54-211-6-143.compute-1.amazonaws.com/phpliteadmin.php?view=export"; \
-		echo "THEN deploy the container."; \
-		exit 1; \
-	}
+	# Not the best failsafe, but better than nothing
+	@echo; echo;
+	@echo "Check that you have a database backup from"
+	@echo "http://ec2-54-211-6-143.compute-1.amazonaws.com/phpliteadmin.php?view=export"
+	@sleep 10
 	-[[ $(shell hostname) == "Jeffreys-MacBook-Pro.local" ]] && make deploy_from_jeff
 
 update_problems_from_jeff:
@@ -67,7 +66,7 @@ update_problems_from_jeff:
 
 deploy_from_jeff:
 	date +%s > /tmp/.acm_biweekly_deploy_begin
-	rsync -r ~/Projects/ACM_Challenges ec2:./
+	make update_problems_from_jeff
 	ssh ec2 "sudo docker pull jeffreypmcateer/acm-programming-challenge-proctor; sudo docker pull jeffreypmcateer/acm-programming-challenge-sandbox;"
 	-ssh ec2 "sudo docker stop acm_proctor; sudo docker rm acm_proctor;"
 	ssh ec2 "sudo docker run -d --name acm_proctor -v /tmp --volume /var/run/docker.sock:/var/run/docker.sock --volume /home/ubuntu/ACM_Challenges:/challenge_db/ --publish 80:80 jeffreypmcateer/acm-programming-challenge-proctor:latest;"
