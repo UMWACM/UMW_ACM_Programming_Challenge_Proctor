@@ -57,8 +57,10 @@ deploy: push
 	@echo; echo;
 	@echo "Check that you have a database backup from"
 	@echo "http://ec2-54-211-6-143.compute-1.amazonaws.com/phpliteadmin.php?view=export"
+	@echo; echo;
 	@sleep 10
 	-[[ $(shell hostname) == "Jeffreys-MacBook-Pro.local" ]] && make deploy_from_jeff
+	-[[ $(shell hostname) == "Jeffreys-Laptop.umw.myresnet.org" ]] && make deploy_from_jeff
 
 update_problems_from_jeff:
 	ssh ec2 "sudo rm -rf ./ACM_Challenges/" # persnickety problem caused by docker's different permissions

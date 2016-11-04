@@ -65,7 +65,7 @@ function getChalDir($id, $back) {
   } else if ($id == $difficult_id) {
     $difficulty = "difficult";
   } else {
-    echo "Problem with ID $id not found for week". // I see a bug here -J
+    echo "Problem with ID $id not found for week ". // I see a bug here -J
          currentChallengeBeginDate().", going back 1 week...\n";
     return getChalDir($id, $back + 1);
     

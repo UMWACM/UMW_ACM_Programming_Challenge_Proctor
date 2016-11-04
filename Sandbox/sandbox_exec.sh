@@ -34,8 +34,8 @@ tests() {
   # Note: increase this number if we ever have more than 1k tests
   for i in $(seq 0 1000); do
     
-    in_file="${chal_ins}$i.txt"
-    their_out_file="${tmp_dir}$i.txt"
+    in_file="${chal_ins}${i}.txt"
+    their_out_file="${tmp_dir}${i}.txt"
     if [[ ! -e "$in_file" ]]; then
       #echo "$in_file does not exist!"
       break;
@@ -47,13 +47,15 @@ tests() {
     if [[ "$DEBUG" == true ]]; then
       # Testing integrity problem if this is used without care
       echo "Running test with DEBUG == $DEBUG"
-      echo | cat "$in_file" - | $@ > "$their_out_file" #2>&1
+      echo | cat "$in_file" - | $@ > "$their_out_file" 2>/dev/null
     else
       now_s=$(date +%s)
-      echo | cat "$in_file" - | timeout -t $MAX_EXEC_SEC $@ > "$their_out_file" #2>&1
+      echo | cat "$in_file" - | timeout -t $MAX_EXEC_SEC $@ > "$their_out_file" 2>/dev/null
       delta_s=$(( ($(date +%s) - $now_s) + 2 ))
       if [[ $delta_s -gt $MAX_EXEC_SEC ]]; then
         echo "[ Your program took longer than $MAX_EXEC_SEC seconds ]"
+      else
+        echo "[ Program took $delta_s seconds to run test ]"
       fi
     fi
     

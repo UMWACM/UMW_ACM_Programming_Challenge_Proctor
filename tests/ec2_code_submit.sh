@@ -18,4 +18,26 @@ curl -X POST -F 'TeamName=Java Test Team' \
                -F 'SolutionCode=@/Users/jeffrey/Downloads/easy.java' \
                http://$server/submit.php
 
+# Tests a language incompatability bug
+curl -X POST -F "TeamName=Test Team'" \
+               -F 'ContactEmails=onions@mail.umw.edu' \
+               -F 'ProblemID=abc123' \
+               -F 'Language=Java' \
+               -F 'SolutionCode=@/tmp/a.java' \
+               http://$server/submit.php
+
+curl -X POST -F "TeamName=Test Team'" \
+               -F 'ContactEmails=onions@mail.umw.edu' \
+               -F 'ProblemID=abc123' \
+               -F 'Language=Python3' \
+               -F 'SolutionCode=@/tmp/a.py' \
+               http://$server/submit.php
+
+curl -X POST -F "TeamName=Test Team'" \
+               -F 'ContactEmails=onions@mail.umw.edu' \
+               -F 'ProblemID=abc123' \
+               -F 'Language=C' \
+               -F 'SolutionCode=@/tmp/a.c' \
+               http://$server/submit.php
+
 
