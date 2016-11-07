@@ -53,7 +53,7 @@ update_problems:
 	-[[ $(shell hostname) == "Jeffreys-MacBook-Pro.local" ]] && make update_problems_from_jeff
 
 deploy: push
-	# Not the best failsafe, but better than nothing
+	@# Not the best failsafe, but better than nothing
 	@echo; echo;
 	@echo "Check that you have a database backup from"
 	@echo "http://ec2-54-211-6-143.compute-1.amazonaws.com/phpliteadmin.php?view=export"
@@ -63,7 +63,7 @@ deploy: push
 	-[[ $(shell hostname) == "Jeffreys-Laptop.umw.myresnet.org" ]] && make deploy_from_jeff
 
 update_problems_from_jeff:
-	ssh ec2 "sudo rm -rf ./ACM_Challenges/" # persnickety problem caused by docker's different permissions
+	-ssh ec2 "sudo rm -rf ./ACM_Challenges/" # persnickety problem caused by docker's different permissions
 	rsync -r ~/Projects/ACM_Challenges ec2:./
 
 deploy_from_jeff:

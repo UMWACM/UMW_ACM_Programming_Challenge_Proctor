@@ -15,6 +15,7 @@
   </head>
   <body>
     <h1><u>Advanced ACM Bi-Weekly Challenge Leaderboard</u></h1>
+    <a href='http://ec2-54-211-6-143.compute-1.amazonaws.com/phpliteadmin.php?download=%2Fvar%2Flib%2Facm_challenge_proctor%2Fleaderboard.db'>Download SQLite Database file.</a>
 <?php
 
 require_once 'leaderboard_db.php';
